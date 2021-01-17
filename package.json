@@ -20,5 +20,10 @@
         "sass-loader": "^8.0.0",
         "vue": "^2.6.12",
         "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "chota": "^0.8.0",
+        "normalize.css": "^8.0.1",
+        "smoothscroll-polyfill": "^0.4.4"
     }
 }
