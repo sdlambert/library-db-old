@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/books', function () {
+    return view('books');
+});
+
+Route::get('/books/isbn/{$isbn}', 'BooksController@show');

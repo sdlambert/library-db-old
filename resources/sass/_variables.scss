@@ -2,7 +2,7 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: 'Arimo', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
@@ -17,3 +17,14 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+// Screen Widths
+
+$small-screen        : 576px;
+$small-screen-down   : (max-width ($small-screen - 1));
+$medium-screen       : 768px;
+$medium-screen-down  : (max-width ($medium-screen - 1));
+$large-screen        : 1024px;
+$large-screen-down   : (max-width ($large-screen - 1));
+$x-large-screen      : 1400px;
+$x-large-screen-down : (max-width ($x-large-screen - 1));

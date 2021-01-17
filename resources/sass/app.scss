@@ -1,7 +1,10 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+// Vendor
+@import '~normalize.css/normalize.css';
+@import '~chota/dist/chota.min.css';
 
 // Variables
 @import 'variables';
-
+@import 'mixins/media';
 @import 'styles/main';
+@import 'styles/nav';
+@import 'styles/hero';
