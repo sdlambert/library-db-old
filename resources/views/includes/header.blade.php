@@ -1,7 +1,10 @@
 <header>
     <div class="container">
         <nav id="navigation">
-            <a href="#" class="logo">Library DB</a>
+            <a href="/" class="logo">
+                <img src="https://placehold.it/120x40" alt="site-logo">
+                <h1 class="is-hidden">Library DB</h1>
+            </a>
             <a aria-label="mobile menu" class="nav-toggle">
                 <span></span>
                 <span></span>

@@ -12,7 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', [
+        'recentBooks' => App\Book::take(3)->latest()->get()
+    ]);
 });
 
 Route::get('/books', function () {
