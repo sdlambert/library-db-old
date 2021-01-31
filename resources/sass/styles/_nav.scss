@@ -187,3 +187,9 @@ ul.menu-left.collapse {
     text-transform: uppercase;
     text-decoration: none;
 }
+
+/** END COMPILED STYLES **/
+
+header .logo h1 {
+    @include visually-hidden;
+}
