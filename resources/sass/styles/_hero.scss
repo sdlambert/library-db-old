@@ -1,25 +1,25 @@
 .hero-banner {
-    background: url('../../images/books-hero-banner.jpg');
-    background-repeat: no-repeat;
+  background: url('../../images/books-hero-banner.jpg');
+  background-repeat: no-repeat;
 
-    @include media($small-screen-down) {
-        background-size: cover;
-        background-position: bottom center;
-        min-height: 250px;
-    }
-    @include media($small-screen) {
-        background-position: top center;
-        min-height: 450px;
-    }
+  @include media($small-screen-down) {
+    background-size: cover;
+    background-position: bottom center;
+    min-height: 250px;
+  }
+  @include media($small-screen) {
+    background-position: top center;
+    min-height: 450px;
+  }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    h2 {
-        display: block;
-        background-color: #333;
-        color: #ddd;
-        padding: 1rem 2rem;
-    }
+  h2 {
+    display: block;
+    background-color: #333;
+    color: #ddd;
+    padding: 1rem 2rem;
+  }
 }
