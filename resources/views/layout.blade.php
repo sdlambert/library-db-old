@@ -18,7 +18,7 @@
     <!--  <link rel="apple-touch-icon" href="icon.png">-->
     <!-- Place favicon.ico in the root directory -->
 
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="/css/app.css">
 
     <!--  <meta name="theme-color" content="#fafafa">-->
 </head>

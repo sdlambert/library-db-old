@@ -5,7 +5,7 @@ body {
 }
 
 main {
-  .no-banner {
-
+  &.no-banner {
+    margin-top: 6rem;
   }
 }

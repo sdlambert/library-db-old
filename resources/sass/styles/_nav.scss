@@ -1,9 +1,11 @@
-a {
-  text-decoration: none;
-  color: rgba(34, 34, 34, 0.8);
-}
-a:hover, a :focus {
-  color: black;
+nav {
+  a {
+    text-decoration: none;
+    color: rgba(34, 34, 34, 0.8);
+  }
+  a:hover, a :focus {
+    color: black;
+  }
 }
 
 .menu-left a {
@@ -45,7 +47,10 @@ a:hover, a :focus {
 }
 
 header {
+  display: flex;
+  align-items: center;
   position: fixed;
+  height: 60px;
   top: 0;
   left: 0;
   width: 100%;
@@ -191,5 +196,5 @@ ul.menu-left.collapse {
 /** END COMPILED STYLES **/
 
 header .logo h1 {
-  @includze visually-hidden;
+  @include visually-hidden;
 }

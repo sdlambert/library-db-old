@@ -1,5 +1,5 @@
 .hero-banner {
-  background: url('../../images/books-hero-banner.jpg');
+  background: url('../images/books-hero-banner.jpg');
   background-repeat: no-repeat;
 
   @include media($small-screen-down) {

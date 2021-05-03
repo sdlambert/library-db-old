@@ -1,24 +1,6 @@
 @extends ('layout')
 
 @section ('content')
-    <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-            <!-- TODO integrate into nav when we do auth -->
-            <div class="top-right links">
-                @auth
-                    <a href="{{ url('/home') }}">Home</a>
-                @else
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}">Register</a>
-                    @endif
-
-                    <a href="{{ route('login') }}">Login</a>
-
-
-                @endauth
-            </div>
-        @endif
-    </div>
     <div class="hero-banner">
         <h2>The Lambert Library</h2>
     </div>
@@ -31,7 +13,7 @@
                 @foreach($recentBooks as $book)
                 <div class="col-4 col-3-md col-2-lg">
                     <a href="">
-                        <img src="https://placehold.it/250x375" alt="Book cover placeholder">
+                        <img src="https://via.placeholder.com/250x375" alt="Book cover placeholder">
                         <h4>{{ $book->title }}</h4>
                     </a>
                 </div>
@@ -41,7 +23,12 @@
                 <div class="col">
                     <p>Here's a quick list of things that could go on the landing page:</p>
                     <ul>
-                        <li><strike>Recently added books</strike></li>
+                        <li><strike>Recently added books</strike>
+                            <ul>
+                                <li>Add links to books</li>
+                                <li>Get covers working</li>
+                            </ul>
+                        </li>
                         <li>Popular authors</li>
                         <li>Popular genres?</li>
                         <li>Statistics about the collection
