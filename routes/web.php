@@ -17,8 +17,6 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/books', function () {
-    return view('books');
-});
-
-Route::get('/books/isbn/{$isbn}', 'BooksController@show');
+// Authors
+Route::get('/authors', 'AuthorsController@index')->name('authors.index');
+Route::get('/authors/create', 'AuthorsController@create')->name('authors.create');
