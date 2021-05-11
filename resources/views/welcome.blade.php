@@ -1,9 +1,6 @@
 @extends ('layout')
 
 @section ('content')
-    <div class="hero-banner">
-        <h2>The Lambert Library</h2>
-    </div>
     <main>
         <div class="container">
             <div class="row">
@@ -21,6 +18,8 @@
             </div>
             <div class="row">
                 <div class="col">
+                    <a href="{{ route('books.create') }}" class="button primary">Add a Book</a>
+                    <a href="{{ route('authors.create') }}" class="button primary">Add an Author</a>
                     <p>Here's a quick list of things that could go on the landing page:</p>
                     <ul>
                         <li><strike>Recently added books</strike>
@@ -39,6 +38,24 @@
                                 <li>% hardcover/trade paperback/paperback</li>
                             </ul>
                         </li>
+                    </ul>
+                    <p>Todo:</p>
+                    <ul>
+                        <li>Revisit need to edit any individual resources, all of them come from API</li>
+                        <li>Focus instead on consuming API and saving data</li>
+                        <li>AJAX search - books</li>
+                        <li>Display results</li>
+                        <li>Select book from results?</li>
+                        <li>Confirm selection</li>
+                        <li>Save book</li>
+                        <li>Save authors</li>
+                        <li>Save publisher</li>
+                        <li>Save edition</li>
+                        <li>AJAX search - authors</li>
+                        <li>AJAX search - publishers</li>
+                        <li>AJAX search - editions</li>
+                        <li>AJAX search - covers?</li>
+                        <li>Save multiple models for book.create</li>
                     </ul>
                 </div>
             </div>

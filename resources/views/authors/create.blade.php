@@ -9,7 +9,8 @@
             <div class="row">
                 <div class="col-12">
                     <h3>Add an Author</h3>
-                    <form action="">
+                    <form action="POST" action="/authors" id="create-author">
+                        @csrf
                         <fieldset id="author-fields">
                             <legend>Author</legend>
                             <div class="row">

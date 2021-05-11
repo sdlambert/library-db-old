@@ -1,4 +1,4 @@
-import smoothscroll from 'smoothscroll-polyfill';
+const smoothscroll = require('smoothscroll-polyfill');
 
 smoothscroll.polyfill();
 
@@ -57,12 +57,8 @@ smoothscroll.polyfill();
   let didScroll;
   let lastScrollTop = 0;
   let delta = 5;
-  let header = document.querySelectorAll('header')[0]
+  let header = document.querySelector('body > header')
   let navbarHeight = header.offsetHeight;
-
-  // $(window).scroll(function(event){
-  //   didScroll = true;
-  // });
 
   window.addEventListener('scroll', function (e) {
     didScroll = true;
@@ -82,7 +78,6 @@ smoothscroll.polyfill();
     if (Math.abs(lastScrollTop - st) <= delta)
       return;
 
-
     // If they scrolled down and are past the navbar, add class .nav-up.
     // This is necessary so you never see what is "behind" the navbar.
     if (st > lastScrollTop && st > navbarHeight) {
@@ -97,7 +92,6 @@ smoothscroll.polyfill();
         el.classList.remove('collapse');
       });
     } else {
-      console.log({st, window: window.innerHeight, document: document.body.clientHeight});
       // Scroll Up
       if (st + window.innerHeight < document.body.clientHeight) {
         header.classList.remove('hide-nav');

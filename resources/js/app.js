@@ -4,9 +4,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+// require('./bootstrap'); only need axios here?
 
-// window.Vue = require('vue');
+window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +19,10 @@ require('./bootstrap');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('book', require('./components/BookComponent.vue').default);
+Vue.component('book-list', require('./components/BookListComponent.vue').default);
+Vue.component('book-search-component', require('./components/BookSearchComponent').default);
+Vue.component('show-button', require('./components/buttons/ButtonShow').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,9 +30,12 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// const app = new Vue({
-//     el: '#app',
-// });
+const app = new Vue({
+  el: '#app'
+});
+
+require('./nav');
+require('./forms');
 
 
 

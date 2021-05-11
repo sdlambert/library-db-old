@@ -24,9 +24,14 @@
 </head>
 
 <body>
+
     @include('includes.header')
 
-    @yield('content')
+    <div id="app">
+
+        @yield('content')
+
+    </div>
 
     @include('includes.footer')
 

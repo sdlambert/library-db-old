@@ -1,0 +1,20 @@
+// chota combined input states fix (hover & focus)
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="color"]):not([type="button"]):not([type="reset"]):not(:disabled):hover, select:hover, textarea:hover, textarea[type="text"]:hover {
+  &:focus {
+    border-color: $color-primary;
+  }
+}
+
+.error-message {
+  color: var(--color-error);
+}
+
+fieldset, .form-group {
+  margin-bottom: 2rem;
+}
+
+input[type="number"].no-increment {
+  appearance: textfield;
+  moz-appearance: textfield;
+  webkit-appearance: textfield;
+}

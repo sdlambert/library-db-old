@@ -20,3 +20,6 @@
         <p>Warning: this page requires Javascript for navigation.</p>
     </noscript>
 </header>
+<div class="hero-banner">
+    <h2>The Lambert Library</h2>
+</div>
