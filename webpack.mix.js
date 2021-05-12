@@ -12,7 +12,8 @@ const mix = require('laravel-mix');
  */
 
 mix.js(['resources/js/app.js', 'resources/js/nav.js'], 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+   .sass('resources/sass/app.scss', 'public/css')
+   .copy('resources/images', 'public');
 
 // TODO: Add sourcemaps (for production)
 // TODO: Add cache busting (for production)

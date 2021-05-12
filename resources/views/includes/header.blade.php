@@ -2,7 +2,7 @@
     <div class="container">
         <nav id="navigation">
             <a href="/" class="logo">
-                <img src="https://via.placehold.com/120x32" alt="site-logo">
+                <img src="{{ asset('/images/site-logo.png') }}" alt="site-logo">
                 <h1>Library DB</h1>
             </a>
             <a aria-label="mobile menu" class="nav-toggle">
