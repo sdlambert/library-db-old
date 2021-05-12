@@ -4,6 +4,17 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type=
     border-color: $color-primary;
   }
 }
+// chota error+focus
+input.error:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="color"]):not([type="button"]):not([type="reset"]):focus,
+select.error:focus,
+textarea.error:focus,
+textarea.error[type="text"]:focus {
+  border-color: var(--color-error);
+}
+
+input.error {
+  border-color: var(--color-error) !important;
+}
 
 .error-message {
   color: var(--color-error);
@@ -11,10 +22,4 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type=
 
 fieldset, .form-group {
   margin-bottom: 2rem;
-}
-
-input[type="number"].no-increment {
-  appearance: textfield;
-  moz-appearance: textfield;
-  webkit-appearance: textfield;
 }

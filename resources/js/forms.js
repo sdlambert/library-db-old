@@ -1,9 +1,6 @@
 require('datalist-polyfill');
-const Bouncer = require('formbouncerjs');
 
 (function() {
-  const validate = new Bouncer('form'),
-        formInputs = document.querySelectorAll('input');
 
   /**
    * Finds all input elements and listens for errors, scrolling to the first
@@ -12,7 +9,8 @@ const Bouncer = require('formbouncerjs');
   function initScrollToError() {
     // Scroll to first error
     let invalidEventFound = false;
-    const submitBookForm = document.querySelector('button[type="submit"]');
+    const submitBookForm = document.querySelector('button[type="submit"]'),
+          formInputs = document.querySelectorAll('input');
 
     if(submitBookForm) {
       formInputs.forEach(function (input) {
