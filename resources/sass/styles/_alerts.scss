@@ -1,0 +1,26 @@
+%alert {
+  padding: .5em;
+  margin-bottom: .5em;
+  border-radius: .15em;
+  border: 1px solid;
+}
+
+@mixin alert($color) {
+  @extend %alert;
+  color: $color;
+  border-color: lighten($color, 20%);
+  background: lighten($color, 40%);
+}
+
+$message-types: (
+  error   :  $red,
+  success :  darken($green, 10%),
+  warning :  darken($yellow, 25%),
+  info    :  $blue
+) !default;
+
+@each $type, $color in $message-types {
+  .alert-#{$type} {
+    @include alert($color);
+  }
+}
