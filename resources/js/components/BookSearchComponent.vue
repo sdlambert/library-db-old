@@ -6,7 +6,7 @@
                     <form class="row" @submit.prevent="submitForm">
                         <div class="col-8">
                             <ValidationProvider rules="isbn" v-slot="{ classes, errors }">
-                                <label for="isbn-query">ISBN</label>
+                                <label for="isbn">ISBN</label>
                                 <input type="text" id="isbn" name="isbn" required
                                        placeholder="ISBN10 or ISBN13"
                                        :class="classes" v-model="isbn">
@@ -19,6 +19,11 @@
                     </form>
                 </ValidationObserver>
             </div>
+            <div class="col-12" v-if="alertErrorMessage">
+                <div class="alert-error">
+                    <p>{{ alertErrorMessage }}</p>
+                </div>
+            </div>
             <div class="col-3" v-show="bookVisible">
                 <book v-bind:book-data="bookData"></book>
             </div>
@@ -27,15 +32,17 @@
 </template>
 
 <script>
+const isEmpty = require('lodash/isEmpty');
+
 // Validation
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import { extend, configure } from 'vee-validate';
-import { required } from 'vee-validate/dist/rules'
 
 // Misc.
 import { scrollToId, isValidIsbnRegEx } from "../utils";
 import { OpenLibrary } from "../open-library";
 import eventHub from './eventHub';
+
 
 // ISBN custom validation
 extend('isbn', {
@@ -75,7 +82,14 @@ export default {
   methods: {
     submitForm() {
       OpenLibrary.searchBookByISBN(this.isbn)
-        .then(this.displayBook, this.handleSearchError);
+        .then(res => {
+          if(!isEmpty(res))
+            return res
+          else
+            throw new Error(`Unable to retrieve data for the ISBN ${this.isbn} from the OpenLibrary API.`);
+        })
+        .then(this.displayBook)
+        .catch(this.handleSearchError);
     },
     displayBook({title, authors, cover, url}) {
       this.bookData = {
@@ -87,6 +101,7 @@ export default {
       this.bookVisible = true;
     },
     handleSearchError(err) {
+      this.alertErrorMessage = err;
       console.error(err);
     },
     toggleVisibility() {
@@ -105,6 +120,7 @@ export default {
       visible: false,
       bookData: {},
       bookVisible: false,
+      alertErrorMessage: null
     }
   },
   created: function() {
