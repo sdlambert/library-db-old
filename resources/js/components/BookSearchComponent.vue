@@ -1,5 +1,5 @@
 <template>
-    <div id="isbn-search-container" class="card col-12" v-show="visible">
+    <div id="isbn-search-container" class="card col-12" v-show="isVisible">
         <div id="search-book-by-isbn" class="row">
             <div class="col-12">
                 <ValidationObserver v-slot="{ invalid }">
@@ -24,7 +24,8 @@
                     <p>{{ alertErrorMessage }}</p>
                 </div>
             </div>
-            <div class="col-3" v-show="bookVisible">
+            <div class="col-3 loader" v-if="isLoading"></div>
+            <div class="col-3" id="book-container" v-show="isBookVisible">
                 <book v-bind:book-data="bookData"></book>
             </div>
         </div>
@@ -81,6 +82,9 @@ export default {
   },
   methods: {
     submitForm() {
+      this.isLoading = true;
+      this.alertErrorMessage = '';
+      this.isBookVisible = false;
       OpenLibrary.searchBookByISBN(this.isbn)
         .then(res => {
           if(!isEmpty(res))
@@ -91,43 +95,52 @@ export default {
         .then(this.displayBook)
         .catch(this.handleSearchError);
     },
-    displayBook({title, authors, cover, url}) {
+    async displayBook({key, title, authors, cover, url, pages, identifiers, publishers}) {
+      this.isLoading = false;
       this.bookData = {
+        key,
         title,
         by: authors[0].name,
         cover: cover.medium,
-        url
+        url,
+        pages,
+        identifiers,
+        publishers
       }
-      this.bookVisible = true;
+      this.isBookVisible = true;
+      // wait until DOM is updated
+      await this.$nextTick();
+      scrollToId('book-container');
     },
     handleSearchError(err) {
+      this.isLoading = false;
       this.alertErrorMessage = err;
       console.error(err);
     },
-    toggleVisibility() {
-      this.visible = !this.visible;
-      if(this.visible) {
+    async toggleSearchVisibility() {
+      this.isVisible = !this.isVisible;
+      if(this.isVisible) {
         // wait until DOM is updated
-        this.$nextTick(function() {
-          scrollToId('isbn-search-container')
-        });
+        await this.$nextTick();
+        scrollToId('isbn-search-container');
       }
     }
   },
   data() {
     return {
       isbn: null,
-      visible: false,
+      isVisible: false,
       bookData: {},
-      bookVisible: false,
+      isBookVisible: false,
+      isLoading: false,
       alertErrorMessage: null
     }
   },
   created: function() {
-    eventHub.$on('show-book-search', this.toggleVisibility)
+    eventHub.$on('show-book-search', this.toggleSearchVisibility)
   },
   beforeDestroy: function () {
-    eventHub.$off('show-book-search',  this.toggleVisibility)
+    eventHub.$off('show-book-search',  this.toggleSearchVisibility)
   }
 }
 </script>

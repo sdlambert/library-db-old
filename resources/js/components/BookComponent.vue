@@ -1,7 +1,9 @@
 <template>
     <div class="card">
-        <header>{{ bookData.title }}</header>
-        <img :src="bookData.cover" alt="">
+        <header>
+            <h3>{{ bookData.title }}</h3>
+        </header>
+        <img :src="bookData.cover" alt="" height="240" width="180">
         <p>{{ bookData.by }}</p>
         <a :href="bookData.url">OpenLibrary link</a>
     </div>
@@ -22,5 +24,7 @@ export default {
 </script>
 
 <style scoped>
-
+    img {
+        background-color: $
+    }
 </style>
