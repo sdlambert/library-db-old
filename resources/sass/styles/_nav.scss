@@ -14,7 +14,6 @@ body > header {
   transition: transform 0.5s cubic-bezier(0.694, 0.048, 0.335, 1), background 0.3s;
   transition: transform 0.5s cubic-bezier(0.694, 0.048, 0.335, 1), background 0.3s, -webkit-transform 0.5s cubic-bezier(0.694, 0.048, 0.335, 1);
   transform: translateY(0);
-  -webkit-transform: translateY(0);
 
   nav {
     a {
@@ -114,17 +113,12 @@ body > header {
   }
   &.hide-nav {
     transform: translateY(-120%) !important;
-    -webkit-transform: translateY(-120%) !important;
   }
 
   ul.menu-left {
     display: block;
     max-height: 0;
     overflow: hidden;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -ms-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
     z-index: 10;
   }

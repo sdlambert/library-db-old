@@ -2,10 +2,15 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Arimo', sans-serif;
+$font-family-sans-serif: 'Lato', sans-serif;
+$font-family-serif: 'Lora', serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
-
+$font-weight-thin: 100;
+$font-weight-light: 250;
+$font-weight-normal: 400;
+$font-weight-semi-bold: 500;
+$font-weight-bold: 700;
 
 // Colors
 $blue: #3490dc;
@@ -18,6 +23,14 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+$black:        #000;
+$gray-darker:  #222;
+$gray-dark:    #333;
+$gray:         #555;
+$gray-light:   #777;
+$gray-lighter: #eee;
+$white:        #fff;
 
 $color-primary: $blue;
 

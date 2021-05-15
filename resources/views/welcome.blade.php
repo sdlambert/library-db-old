@@ -43,13 +43,23 @@
                     <ul>
                         <li>Revisit need to edit any individual resources, all of them come from API</li>
                         <li>Focus instead on consuming API and saving data</li>
-                        <li>AJAX search - books</li>
-                        <li>Display results</li>
+                        <li><strike>AJAX search - books</strike></li>
+                        <li><strike>Display results</strike></li>
+                        <li>
+                            Display error (book not found)
+                            <ul>
+                                <li>Manual entry (see scratch file!)</li>
+                            </ul>
+                        </li>
                         <li>Select book from results?</li>
                         <li>Confirm selection</li>
-                        <li>Save book</li>
-                        <li>Save authors</li>
-                        <li>Save publisher</li>
+                        <li>Confirm book model</li>
+                        <li>Save book details</li>
+                        <li>Confirm author model</li>
+                        <li>Save author details</li>
+                        <li>Confirm publisher model</li>
+                        <li>Save publisher details</li>
+                        <li>Confirm edition model</li>
                         <li>Save edition</li>
                         <li>AJAX search - authors</li>
                         <li>AJAX search - publishers</li>
