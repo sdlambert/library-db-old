@@ -20,8 +20,11 @@ namespace App{
  * @property string|null $pseudonym
  * @property string|null $birth_date
  * @property string|null $death_date
+ * @property string $ol_author_key
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Book[] $book
+ * @property-read int|null $book_count
  * @method static \Illuminate\Database\Eloquent\Builder|Author newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Author newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Author query()
@@ -31,6 +34,7 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Author whereFirstName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Author whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Author whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Author whereOlAuthorKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Author wherePseudonym($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Author whereUpdatedAt($value)
  */
@@ -44,22 +48,26 @@ namespace App{
  * @property int $id
  * @property string $title
  * @property string|null $blurb
- * @property int $published_under_pseudonym
- * @property int $author_id
+ * @property string $cover
+ * @property string $url
  * @property int $edition_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Author[] $author
+ * @property-read int|null $author_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Edition[] $edition
+ * @property-read int|null $edition_count
  * @method static \Illuminate\Database\Eloquent\Builder|Book newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Book newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Book query()
- * @method static \Illuminate\Database\Eloquent\Builder|Book whereAuthorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Book whereBlurb($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Book whereCover($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Book whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Book whereEditionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Book whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Book wherePublishedUnderPseudonym($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Book whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Book whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Book whereUrl($value)
  */
 	class Book extends \Eloquent {}
 }
@@ -69,15 +77,18 @@ namespace App{
  * App\Edition
  *
  * @property int $id
- * @property int|null $isbn13
- * @property int|null $isbn10
- * @property string|null $publisher
+ * @property string|null $isbn13
+ * @property string|null $isbn10
+ * @property string $publisher_id
  * @property string|null $publish_date
  * @property int|null $pages
  * @property int $format
- * @property int|null $goodreads
+ * @property string|null $goodreads
+ * @property string|null $openlibrary
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Book $book
+ * @property-read \App\Publisher|null $publisher
  * @method static \Illuminate\Database\Eloquent\Builder|Edition newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Edition newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Edition query()
@@ -87,12 +98,34 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Edition whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Edition whereIsbn10($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Edition whereIsbn13($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Edition whereOpenlibrary($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Edition wherePages($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Edition wherePublishDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Edition wherePublisher($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Edition wherePublisherId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Edition whereUpdatedAt($value)
  */
 	class Edition extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Publisher
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Edition[] $editions
+ * @property-read int|null $editions_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Publisher newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Publisher newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Publisher query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Publisher whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Publisher whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Publisher whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Publisher whereUpdatedAt($value)
+ */
+	class Publisher extends \Eloquent {}
 }
 
 namespace App{

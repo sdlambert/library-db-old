@@ -24,9 +24,13 @@
     "dependencies": {
         "chota": "^0.8.0",
         "datalist-polyfill": "^1.24.4",
+        "isbn-utils": "^1.1.0",
         "normalize.css": "^8.0.1",
         "npm": "^7.12.1",
+        "parse-full-name": "^1.2.5",
         "smoothscroll-polyfill": "^0.4.4",
-        "vee-validate": "^3.4.5"
+        "spinthatshit": "^1.0.4",
+        "vee-validate": "^3.4.5",
+        "vuex": "^3.6.2"
     }
 }
