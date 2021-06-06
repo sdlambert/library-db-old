@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\Response;
 class AuthorsController extends Controller
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'birth_date',
+        'death_date',
+        'pseudonym',
+        'ol_author_key'
+    ];
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -38,7 +52,14 @@ class AuthorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $author = new Author();
+
+        // todo validation
+        // $author->save($request->validated());
+
+        $author->save($request->all());
+
+        return Response::view('authors.index');
     }
 
     /**
