@@ -4,9 +4,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-// require('./bootstrap'); only need axios here?
+require('./bootstrap'); // only need axios here?
+// import lodash functions individually
 
 window.Vue = require('vue');
+
+import store from './store';
 
 /**
  * The following block of code may be used to automatically register your
@@ -21,7 +24,8 @@ window.Vue = require('vue');
 
 Vue.component('book', require('./components/BookComponent.vue').default);
 Vue.component('book-list', require('./components/BookListComponent.vue').default);
-Vue.component('book-search-component', require('./components/BookSearchComponent').default);
+Vue.component('book-search-form-component', require('./components/BookSearchFormComponent').default);
+Vue.component('confirm-book-form-component', require('./components/ConfirmBookFormComponent').default);
 Vue.component('show-button', require('./components/buttons/ButtonShow').default);
 
 /**
@@ -31,7 +35,8 @@ Vue.component('show-button', require('./components/buttons/ButtonShow').default)
  */
 
 const app = new Vue({
-  el: '#app'
+  el: '#app',
+  store: store
 });
 
 require('./nav');
