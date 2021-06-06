@@ -17,11 +17,9 @@ class CreateBooksTable extends Migration
             $table->bigIncrements('id');
             $table->string('title', 256);
             $table->text('blurb')->nullable();
-            $table->boolean('published_under_pseudonym')->default(false);
-            $table->bigInteger('author_id');
+            $table->string('cover', 256);
+            $table->string('url', 256);
             $table->bigInteger('edition_id');
-            $table->foreign('author_id')->references('id')->on('authors');
-            $table->foreign('edition_id')->references('id')->on('editions');
             $table->timestamps();
         });
     }

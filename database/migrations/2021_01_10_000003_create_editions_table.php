@@ -16,13 +16,14 @@ class CreateEditionsTable extends Migration
     {
         Schema::create('editions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('isbn13')->nullable();
-            $table->integer('isbn10')->nullable();
-            $table->string('publisher')->nullable();
-            $table->date('publish_date')->nullable();
+            $table->string('isbn13', 64)->nullable();
+            $table->string('isbn10',64)->nullable();
+            $table->string('publisher_id');
+            $table->string('publish_date', 64)->nullable();
             $table->smallInteger('pages')->nullable();
             $table->smallInteger('format')->default(EditionFormat::Hardcover);
-            $table->integer('goodreads')->nullable();
+            $table->string('goodreads', 64)->nullable();
+            $table->string('openlibrary', 64)->nullable();
             $table->timestamps();
         });
     }
