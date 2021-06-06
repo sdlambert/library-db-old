@@ -2,31 +2,34 @@ import OpenLibrary from "../../open-library";
 
 const openLib = new OpenLibrary();
 const parseFullName = require('parse-full-name').parseFullName;
+const getDefaultState = () => {
+  return     {
+    book: {
+      title: null,
+      cover: null,
+      blurb: null,
+      url: null
+    },
+    edition: {
+      isbn_10: null,
+      isbn_13: null,
+      goodreads: null,
+      openlibrary: null,
+      publish_date: null,
+      pages: null,
+      format: null
+    },
+    publishers: null,
+    authors: null,
+    editionKey: null,
+    workKey: null
+  }
+}
 
 // STATE
 // =====================================================
 
-const state = () => ({
-  book: {
-    title: null,
-    cover: null,
-    blurb: null,
-    url: null
-  },
-  edition: {
-    isbn_10: null,
-    isbn_13: null,
-    goodreads: null,
-    openlibrary: null,
-    publish_date: null,
-    pages: null,
-    format: null
-  },
-  publishers: null,
-  authors: null,
-  editionKey: null,
-  workKey: null
-});
+const state = getDefaultState();
 
 // GETTERS
 // =====================================================
@@ -56,6 +59,12 @@ const getters = {
 // =====================================================
 
 const mutations = {
+  // Reset
+  resetState (state) {
+    Object.assign(state, getDefaultState());
+  },
+
+  // Keys
   setWorkKey (state, key) {
     state.workKey = key;
   },
@@ -107,14 +116,24 @@ const mutations = {
 
 const actions = {
   /**
-   * Fetches book data from the OpenLibrary API
-   * @param {function}     dispatch     VueX dispatch
-   * @param {function}     commit       VueX commit
-   * @param {string}       isbn         a valid ISBN string
+   * Reset book to initial state
    *
-   * @returns {Promise<*|void>}
+   * @param { function }     commit       VueX commit
    */
-  async searchForISBN({ dispatch, commit }, isbn ) {
+  resetBookState ({ commit }) {
+    commit('resetState')
+  },
+
+  /**
+   * Fetches book data from the OpenLibrary API
+   *
+   * @param { function }     commit       VueX commit
+   * @param { function }     dispatch     VueX dispatch
+   * @param { string }       isbn         a valid ISBN string
+   *
+   * @returns { Promise<*|void> }
+   */
+  async searchForISBN({ commit, dispatch }, isbn ) {
     // catch errors in component
     return await openLib.searchByBookAPI(isbn)
       .then(async (response) => {
@@ -129,8 +148,14 @@ const actions = {
       });
   },
 
-
-
+  /**
+   * Retrieve an edition and store relevant data
+   *
+   * @param { function }     commit      VueX commit
+   * @param { function }     getters     VueX getters
+   *
+   * @returns { Promise<void> }
+   */
   async searchEdition({ commit, getters }) {
     await openLib.searchByAPIType(getters.editionKey, "edition")
       .then(response => {
@@ -140,6 +165,14 @@ const actions = {
       .catch(console.error)
   },
 
+  /**
+   * Retrieve a work and store relevant data
+   *
+   * @param { function }     commit      VueX commit
+   * @param { function }     getters     VueX getters
+   *
+   * @returns { Promise<void> }
+   */
   async searchWork({ commit, getters }) {
     await openLib.searchByAPIType(getters.workKey, "work")
       .then(response => {
@@ -148,6 +181,14 @@ const actions = {
       .catch(console.error)
   },
 
+  /**
+   * Mutate all authors, configure names and store data
+   *
+   * @param { function }     commit      VueX commit
+   * @param { Array }        authors     an array of authors
+   *
+   * @returns { Promise<void> }
+   */
   async setAuthors({ commit }, authors) {
     // Mutate all authors in the array
     let authorArray = await Promise.all(
@@ -180,14 +221,14 @@ const actions = {
    * Iterate over identifiers and commit each one, then set the remaining
    * available edition data
    *
-   * @param      { function }     dispatch     VueX dispatch
-   * @param      { function }     commit       VueX commit
-   * @param      { Object }       response     the API response
+   * @param { function }     commit       VueX commit
+   * @param { function }     dispatch     VueX dispatch
+   * @param { Object }       response     the API response
    */
-  async setEdition({ dispatch, commit }, response) {
+  async setEdition({ commit, dispatch, state }, response) {
     for(let key in response.identifiers) {
       // only set known identifiers
-      if (response.identifiers.hasOwnProperty(key)) {
+      if (response.identifiers.hasOwnProperty(key) && state.edition.hasOwnProperty(key)) {
         if(response.identifiers[key].length) {
           commit('setIdentifier', {
             key: key,
@@ -202,6 +243,15 @@ const actions = {
     await dispatch('searchEdition');
   },
 
+
+  /**
+   * Store book data and retrieve work data
+   *
+   * @param  { function }     dispatch     VueX dispatch
+   * @param  { function }     commit       VueX commit
+   * @param  { Object }       response     API response
+   * @returns { Promise<void> }
+   */
   async setBook({ commit, dispatch }, response) {
     commit('setTitle', response.title);
     commit('setCover', response.cover.medium || null);
@@ -210,8 +260,6 @@ const actions = {
   },
 };
 
-
-
 export default {
   namespaced: true,
   state,
@@ -219,60 +267,3 @@ export default {
   actions,
   mutations,
 }
-
-// Helpers
-
-
-
-
-
-
-// set authors
-// set publishers
-
-// transformBook
-// setBooksKey
-//      this.booksKey = res.key;
-
-// transformEdition
-
-// await openLib.searchEditionsByAPI(this.booksKey)
-//   .then((edition) => {
-
-// setWorksKey
-
-//     let works = edition.works.shift();
-//     this.worksKey = works.key;
-//     this.edition.format = upperFirst(edition.physical_format);
-
-//   });
-
-// transformWork
-
-// await openLib.searchWorksByAPI(this.worksKey)
-//   .then((work) => {
-//     this.book.blurb = work.description.value;
-//   })
-
-// storeData({key, title, authors, cover, url, pages, identifiers, publishers, publish_date}) {
-//       this.bookData = {
-//         key,
-//         publisher: publishers.shift(),
-//         edition: {
-//           isbn10: identifiers.isbn_10[0],
-//           isbn13: identifiers.isbn_13[0],
-//           goodreads: identifiers.goodreads[0] || null,
-//           openlibrary: identifiers.openlibrary[0],
-//           publish_date,
-//           pages,
-//           format: this.edition.format
-//         },
-//         authors,
-//         book: {
-//           title,
-//           cover: cover.medium,
-//           blurb: this.book.blurb,
-//           url
-//         }
-//       }
-//     },
