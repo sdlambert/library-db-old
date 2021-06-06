@@ -1,9 +1,17 @@
-// chota combined input states fix (hover & focus)
+// chota input states fix (hover & focus)
 input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="color"]):not([type="button"]):not([type="reset"]):not(:disabled):hover, select:hover, textarea:hover, textarea[type="text"]:hover {
+  background-color: $almost-white;
   &:focus {
     border-color: $color-primary;
   }
+  &.success {
+    border-color: var(--color-success);
+  }
+  &.error {
+    border-color: var(--color-error);
+  }
 }
+
 // chota error+focus
 input.error:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="color"]):not([type="button"]):not([type="reset"]):focus,
 select.error:focus,

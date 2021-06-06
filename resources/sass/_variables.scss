@@ -13,26 +13,30 @@ $font-weight-semi-bold: 500;
 $font-weight-bold: 700;
 
 // Colors
-$blue: #3490dc;
+$slate-blue: #577590;
 $indigo: #6574cd;
 $purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
+$pink: #c594c5;
+$red: #f94144;
+$orange: #f3722c;
+$yellow: #f9c74f;
+$green: #90be6d;
+$teal: #43aa8b;
 $cyan: #6cb2eb;
+$brown: #ab7967;
 
 $black:        #000;
-$gray-darker:  #222;
-$gray-dark:    #333;
-$gray:         #555;
-$gray-light:   #777;
-$gray-lighter: #eee;
+$darker-gray:  #1b2b34;
+$dark-gray:    #343d46;
+$medium-gray:  #4f5b66;
+$gray:         #65737e;
+$light-gray:   #a7adba;
+$lighter-gray: #c0c5ce;
+$off-white:    #cdd3de;
+$almost-white: #eee;
 $white:        #fff;
 
-$color-primary: $blue;
+$color-primary: $slate-blue;
 
 // Screen Widths
 
@@ -47,5 +51,11 @@ $x-large-screen-down : (max-width ($x-large-screen - 1));
 
 // chota overrides
 :root {
-  --color-primary: #3490dc !important;
+  --color-primary: #577590;
+  --bg-secondary-color: #d8dee9;
+  --color-lightGrey: #a7adba;
+  --color-grey: #65737e;
+  --color-darkGrey: #343d46;
+  --color-error: #f94144;
+  --color-success: #90be6d;
 }

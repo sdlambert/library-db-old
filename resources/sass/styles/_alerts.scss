@@ -16,7 +16,7 @@ $message-types: (
   error   :  $red,
   success :  darken($green, 10%),
   warning :  darken($yellow, 25%),
-  info    :  $blue
+  info    :  $cyan
 ) !default;
 
 @each $type, $color in $message-types {

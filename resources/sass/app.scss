@@ -1,6 +1,7 @@
 // Vendor
 @import '~normalize.css/normalize.css';
 @import '~chota/dist/chota.min.css';
+@import '~spinthatshit/src/loaders';
 
 // Variables
 @import 'mixins/media';
@@ -12,4 +13,6 @@
 @import 'styles/hero';
 @import 'styles/forms';
 @import 'styles/alerts';
+@import 'styles/cards';
+@import 'styles/buttons';
 @import 'styles/loader';
