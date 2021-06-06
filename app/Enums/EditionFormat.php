@@ -5,15 +5,13 @@ namespace App\Enums;
 use BenSampo\Enum\Enum;
 
 /**
+ * @method static static Unknown()
  * @method static static Hardcover()
- * @method static static TradePaperback()
  * @method static static Paperback()
- * @method static static BookClubEdition()php ar
  */
 final class EditionFormat extends Enum
 {
-    const Hardcover       = 0;
-    const TradePaperback  = 1;
+    const Unknown         = 0;
+    const Hardcover       = 1;
     const Paperback       = 2;
-    const BookClubEdition = 3;
 }
