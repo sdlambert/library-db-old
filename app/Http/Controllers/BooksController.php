@@ -43,23 +43,35 @@ class BooksController extends Controller
     public function store() {
 
         request()->validate([
-            // publishers
-            'publisher.name'       => 'required|string',
-            // edition
-            'edition.isbn10'       => 'required_without:isbn13|nullable|string', // must allow nullable
-            'edition.isbn13'       => 'required_without:isbn10|nullable|string', // must allow nullable
-            'edition.goodreads'    => 'nullable|string',
-            'edition.openlibrary'  => 'nullable|string',
-            'edition.publish_date' => 'nullable|string',
-            'edition.format'       => 'nullable|string',
-            'edition.pages'        => 'nullable|integer',
-            // book
-             'title'               => 'required|string',
-             'blurb'               => 'nullable|string',
-             'url'                 => 'nullable|url',
-             'cover'               => 'nullable|url',
+            // authors
+            'authors.*.birth_date'    => 'nullable|string',
+            'authors.*.death_date'    => 'nullable|string',
+            'authors.*.first_name'    => 'required|string',
+            'authors.*.last_name'     => 'nullable|string',
+            'authors.*.ol_author_key' => 'required|string',
 
+            // publishers
+            'publishers.*.name'       => 'required|string',
+
+            // edition
+            'edition.isbn_10'         => 'required_without:isbn13|nullable|string', // must allow nullable
+            'edition.isbn_13'         => 'required_without:isbn10|nullable|string', // must allow nullable
+            'edition.goodreads'       => 'nullable|string',
+            'edition.openlibrary'     => 'nullable|string',
+            'edition.publish_date'    => 'nullable|string',
+            'edition.format'          => 'nullable|string',
+            'edition.pages'           => 'nullable|integer',
+
+            // book
+            'book.title'              => 'required|string',
+            'book.blurb'              => 'nullable|string',
+            'book.url'                => 'nullable|url',
+            'book.cover'              => 'nullable|url',
         ]);
+
+        $authors = request('authors');
+
+        dd($authors);
 
         // Publishers (array)
         $publisher = request('publisher');
