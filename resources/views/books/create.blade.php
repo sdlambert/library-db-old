@@ -6,16 +6,13 @@
 
             <div class="row">
                 <header class="col-12">
-                    <h2>New Book</h2>
+                    <h2>Add a New Book</h2>
                 </header>
                 <div class="col">
-                    <button class="button" type="button" disabled>Scan a New Book</button>
+                    <show-button toggle-event="show-book-search">Search/Scan</show-button>
                 </div>
                 <div class="col">
-                    <show-button toggle-event="show-book-search">Search by ISBN</show-button>
-                </div>
-                <div class="col">
-                    <button class="button show-toggle" type="button" data-target="create-book" disabled>Manual Entry</button>
+                    <button class="button show-toggle" type="button" data-target="create-book" disabled>Create</button>
                 </div>
             </div>
 
@@ -32,7 +29,7 @@
                 </div>
             @endif
             <div class="row">
-                <book-search-component></book-search-component>
+                <book-search-form-component></book-search-form-component>
             </div>
 
 

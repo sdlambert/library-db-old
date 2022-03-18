@@ -8,13 +8,11 @@ smoothscroll.polyfill();
   //
   // This code has been converted to vanilla Javascript by me :)
 
-  // NAVIGATION LOGO SCROLL TOP
+  // NAVIGATION LOGO
   document.querySelectorAll('.logo').forEach(function (el) {
     el.addEventListener('click', function (e) {
-      e.preventDefault();
       document.querySelector('.nav-toggle').classList.remove('open');
       document.querySelector('.menu-left').classList.remove('collapse');
-      window.scroll({top: 0, left: 0, behavior: 'smooth'});
     });
   });
 
@@ -51,25 +49,32 @@ smoothscroll.polyfill();
     });
   });
 
+  // SCROLL TO TOP
+
   // SHOW/HIDE NAV
 
   // Hide Header on on scroll down
   let didScroll;
   let lastScrollTop = 0;
   let delta = 5;
-  let header = document.querySelector('body > header')
+  let header = document.querySelector('body > header');
+  let scrollToTopButton = document.querySelector('#scroll-to-top');
   let navbarHeight = header.offsetHeight;
 
-  window.addEventListener('scroll', function (e) {
+  window.addEventListener('scroll', e => {
     didScroll = true;
   })
+
+  scrollToTopButton.addEventListener('click', e => {
+    window.scroll({top: 0, left: 0, behavior: 'smooth'});
+  });
 
   setInterval(function () {
     if (didScroll) {
       hasScrolled();
       didScroll = false;
     }
-  }, 250);
+  }, 250, null);
 
   function hasScrolled() {
     var st = window.scrollY;
@@ -91,11 +96,15 @@ smoothscroll.polyfill();
       document.querySelectorAll('.menu-left').forEach(function (el) {
         el.classList.remove('collapse');
       });
+      scrollToTopButton.classList.remove('is-hidden');
+
     } else {
       // Scroll Up
       if (st + window.innerHeight < document.body.clientHeight) {
         header.classList.remove('hide-nav');
         header.classList.add('show-nav');
+        scrollToTopButton.classList.add('is-hidden');
+
       }
     }
 
