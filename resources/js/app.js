@@ -27,6 +27,7 @@ Vue.component('book-list', require('./components/BookListComponent.vue').default
 Vue.component('book-search-form-component', require('./components/BookSearchFormComponent').default);
 Vue.component('confirm-book-form-component', require('./components/ConfirmBookFormComponent').default);
 Vue.component('show-button', require('./components/buttons/ButtonShow').default);
+Vue.component('isbn-scanner', require('./components/ISBNScanner').default)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

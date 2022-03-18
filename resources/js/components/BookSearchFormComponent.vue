@@ -1,19 +1,23 @@
 <template>
     <div id="isbn-search-container" class="col-12" v-show="isSearchFormVisible">
         <div id="search-book-by-isbn" class="card">
+            <isbn-scanner v-if="isScannerVisible"></isbn-scanner>
             <ValidationObserver tag="form" @submit.prevent="submitForm" v-slot="{ invalid }" class="row">
                 <div class="col">
-                    <ValidationProvider rules="isbn" v-slot="{ classes, errors }">
-                        <label for="isbn">ISBN</label>
-                        <input type="text" id="isbn" name="isbn" required
-                               placeholder="ISBN10 or ISBN13"
+                    <div class="search-wrap">
+                        <button id="scan-toggle" class="button" type="button" @click="toggleScanner" v-if="!isScannerVisible">Scan</button>
+                        <button id="scan-cancel" class="button error" type="button" @click="toggleScanner" v-if="isScannerVisible">Cancel</button>
+                        <ValidationProvider rules="isbn" v-slot="{ classes, errors }">
+                            <label for="isbn">ISBN</label>
+                            <input type="text" id="isbn" name="isbn" size="13" required
+                                   placeholder="ISBN10 or ISBN13"
 
-                               :class="classes" v-model.trim="isbn">
-                        <p v-show="errors.length" class="text-error">{{ errors[0] }}</p>
-                    </ValidationProvider>
-                </div>
-                <div class="col">
-                    <button type="submit" id="isbn-search" :disabled="( invalid || isLoading )">Search</button>
+                                   :class="classes" v-model.trim="isbn" @input="clearErrors">
+                            <p v-show="errors.length" class="text-error">{{ errors[0] }}</p>
+                        </ValidationProvider>
+                        <button type="submit" id="isbn-search" :disabled="( invalid || isLoading )">Search</button>
+                        <button v-show="false">Scan Again</button>
+                    </div>
                 </div>
             </ValidationObserver>
             <div class="alert-error" v-show="errors.length" v-for="error in errors">
@@ -36,6 +40,9 @@ import { extend, configure } from 'vee-validate';
 import { scrollToId, isValidIsbnRegEx, isbnStringToInt } from "../utils";
 import eventHub from './eventHub';
 import { mapGetters } from 'vuex'
+
+// Components
+import ISBNScanner from "./ISBNScanner";
 
 const upperFirst = require('lodash/upperFirst'),
       parseFullName = require('parse-full-name').parseFullName;
@@ -73,12 +80,14 @@ configure({
 export default {
   components: {
     ValidationProvider,
-    ValidationObserver
+    ValidationObserver,
+    ISBNScanner
   },
   data() {
     return {
       isbn: null,
       isSearchFormVisible: false,
+      isScannerVisible: false,
       isBookVisible: false,
       isLoading: false,
       errors: [],
@@ -89,6 +98,7 @@ export default {
       this.isLoading = true;
       this.errors = [];
       this.isBookVisible = false;
+      this.isScannerVisible = false;
 
       if(this.normalizedIsbn) {
         this.$store.dispatch('newBook/searchForISBN', this.normalizedIsbn)
@@ -103,6 +113,9 @@ export default {
       this.errors.push(errorMessage);
       console.error(errorMessage);
     },
+    clearErrors() {
+      this.errors = [];
+    },
     displayBook() {
       this.isLoading = false;
       this.isBookVisible = true;
@@ -112,6 +125,16 @@ export default {
       if (this.isSearchFormVisible) {
         // wait until DOM is updated
         await this.$nextTick();
+        scrollToId('isbn-search-container');
+      }
+    },
+    onScan (decodedText, decodedResult) {
+      this.isbn = decodedText;
+      scrollToId('isbn-search-container');
+    },
+    toggleScanner () {
+      this.isScannerVisible = !this.isScannerVisible;
+      if(this.isScannerVisible) {
         scrollToId('isbn-search-container');
       }
     }
@@ -126,15 +149,51 @@ export default {
   },
   created() {
     eventHub.$on('show-book-search', this.toggleSearchVisibility);
+    eventHub.$on('result', this.onScan);
+  },
+  mounted() {
+
   },
   beforeDestroy () {
     eventHub.$off('show-book-search',  this.toggleSearchVisibility);
+    eventHub.$off('result', this.onScan);
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss">
     #isbn-search {
-        margin-top: 25px;
+      margin-top: 25px;
     }
+
+    .search-wrap {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+
+      button, span {
+        margin-right: 20px;
+      }
+
+      button {
+        margin-top: 25px;
+      }
+    }
+
+    #interactive {
+      max-width: 100%;
+      position: relative;
+
+      video {
+        width: 100% !important;
+      }
+
+      .drawingBuffer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+    }
+
 </style>
