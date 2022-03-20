@@ -6,8 +6,8 @@
             </div>
             <br>
             <button @click="addBook" class="bg-success">Add Book</button>
-            <div class="alert-error" v-show="errors.length">
-                <p>{{ error }}</p>
+            <div class="alert-error" v-show="errors.length" v-for="error in errors">
+                <p>{{ error.message }}</p>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@ export default {
       axios.post('/books', this.bookData)
         .then(this.onSuccess)
         .catch(err => {
-          this.errors.push(err.message);
+          this.errors.push(err);
         });
     },
     onSuccess(book) {
