@@ -4,7 +4,7 @@
             <h3>{{ work.book.title }}</h3>
         </header>
         <img :src="work.book.cover" alt="" height="240" width="180">
-        <p>By {{ fullNames() }}</p>
+        <p>By {{ this.fullNames }}</p>
         <a :href="work.book.url">OpenLibrary link</a>
     </div>
 </template>
@@ -22,18 +22,16 @@ export default {
 
     }
   },
-  methods: {
-    fullNames() {
-      let authors = this.authorFullNames;
-      let last = authors.pop();
-
-      return authors.length > 0 ? authors.join(',') + ' and ' + last : last;
-    }
-  },
   computed: {
     ...mapGetters('newBook', [
       "authorFullNames"
-    ])
+    ]),
+    fullNames() {
+      let authors = [...new Set(this.authorFullNames)];
+      let last = authors.pop();
+
+      return authors.length > 0 ? authors.join(', ') + ' and ' + last : last;
+    }
   }
 }
 </script>
