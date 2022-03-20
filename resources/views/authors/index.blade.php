@@ -1,9 +1,6 @@
 @extends ('layout')
 
 @section ('content')
-    <div class="hero-banner">
-        <h2>The Lambert Library</h2>
-    </div>
     <main>
         <div class="container">
             <div class="row">
