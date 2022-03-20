@@ -3,10 +3,12 @@
 @import '~chota/dist/chota.min.css';
 @import '~spinthatshit/src/loaders';
 
-// Variables
+// Variables/utils
 @import 'mixins/media';
 @import 'variables';
 @import 'helpers';
+
+// Components
 @import 'styles/typography';
 @import 'styles/main';
 @import 'styles/nav';
@@ -17,3 +19,6 @@
 @import 'styles/cards';
 @import 'styles/buttons';
 @import 'styles/loader';
+
+// Pages
+@import 'pages/books';
