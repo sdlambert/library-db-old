@@ -18,8 +18,8 @@ class CreateAuthorsTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('pseudonym')->nullable();
-            $table->date('birth_date')->nullable();
-            $table->date('death_date')->nullable();
+            $table->string('birth_date')->nullable();
+            $table->string('death_date')->nullable();
             $table->string('ol_author_key');
             $table->timestamps();
         });

@@ -15,7 +15,7 @@ class Publisher extends Model
 
     public function editions() {
         // an edition has one publisher
-        // a publisher belongs to many editions
-        return $this->belongsToMany(Edition::class);
+        // a publisher has many editions
+        return $this->hasMany(Edition::class);
     }
 }

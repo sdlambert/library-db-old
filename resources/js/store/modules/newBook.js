@@ -19,7 +19,7 @@ const getDefaultState = () => {
       pages: null,
       format: null
     },
-    publishers: null,
+    publisher: null,
     authors: null,
     editionKey: null,
     workKey: null
@@ -41,11 +41,9 @@ const getters = {
     return {
       book: state.book,
       edition: state.edition,
-      publishers: state.publishers,
+      publisher: state.publisher,
       authors: state.authors
     }
-    // a getter should never just access something on the state,
-    // have it return something else, like a computed value
   },
   authorFullNames: (state) => {
     let authors = state.authors;
@@ -72,9 +70,9 @@ const mutations = {
     state.editionKey = key;
   },
 
-  // Publisher(s)
+  // Publisher (get 1st publisher, TODO more than one publisher?)
   setPublishers (state, publishers) {
-    state.publishers = publishers;
+    state.publisher = publishers.shift();
   },
 
   // Author(s)
@@ -223,6 +221,7 @@ const actions = {
    *
    * @param { function }     commit       VueX commit
    * @param { function }     dispatch     VueX dispatch
+   * @param { function }     state        VueX state
    * @param { Object }       response     the API response
    */
   async setEdition({ commit, dispatch, state }, response) {

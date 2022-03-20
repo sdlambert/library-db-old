@@ -6,6 +6,9 @@
             </div>
             <br>
             <button @click="addBook" class="bg-success">Add Book</button>
+            <div class="alert-error" v-show="errors.length">
+                <p>{{ error }}</p>
+            </div>
         </div>
     </div>
 </template>
@@ -18,6 +21,11 @@ export default {
   props: {
     bookData: Object
   },
+  data() {
+    return {
+      errors: []
+    }
+  },
   async mounted() {
     // wait until DOM is updated
     await this.$nextTick();
@@ -25,7 +33,16 @@ export default {
   },
   methods: {
     addBook() {
-      axios.post('/books', this.bookData);
+      this.errors = [];
+      axios.post('/books', this.bookData)
+        .then(this.onSuccess)
+        .catch(err => {
+          this.errors.push(err.message);
+        });
+    },
+    onSuccess(book) {
+      console.log(book);
+      //window.href.location = `/books/${book.id}`
     }
   }
 }

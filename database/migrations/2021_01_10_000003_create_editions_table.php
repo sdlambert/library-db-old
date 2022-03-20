@@ -18,13 +18,14 @@ class CreateEditionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('isbn13', 64)->nullable();
             $table->string('isbn10',64)->nullable();
-            $table->string('publisher_id');
+            $table->unsignedInteger('publisher_id');
             $table->string('publish_date', 64)->nullable();
             $table->smallInteger('pages')->nullable();
             $table->smallInteger('format')->default(EditionFormat::Hardcover);
             $table->string('goodreads', 64)->nullable();
             $table->string('openlibrary', 64)->nullable();
             $table->timestamps();
+
         });
     }
 
