@@ -158,7 +158,7 @@ const actions = {
     await openLib.searchByAPIType(getters.editionKey, "edition")
       .then(response => {
         commit('setWorkKey', openLib.getKeyFromURI(response.works.shift().key));
-        commit('setFormat', response.physical_format);
+        commit('setFormat', response.physical_format || "Unknown");
       })
       .catch(console.error)
   },
@@ -237,7 +237,7 @@ const actions = {
       }
     }
     commit('setPublishDate', response.publish_date);
-    commit('setPages', response.number_of_pages);
+    commit('setPages', response.number_of_pages || null);
     // get edition format
     await dispatch('searchEdition');
   },
