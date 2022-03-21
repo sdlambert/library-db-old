@@ -19,7 +19,6 @@ class CreateBooksTable extends Migration
             $table->text('blurb')->nullable();
             $table->string('cover', 256);
             $table->string('url', 256);
-            $table->bigInteger('edition_id');
             $table->timestamps();
         });
     }

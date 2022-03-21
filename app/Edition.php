@@ -10,6 +10,7 @@ class Edition extends Model
         'isbn10',
         'isbn13',
         'publisher_id',
+        'book_id',
         'goodreads',
         'openlibrary',
         'publish_date',

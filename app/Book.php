@@ -11,14 +11,13 @@ class Book extends Model
         'blurb',
         'cover',
         'url',
-        'edition_id'
     ];
 
     public function authors() {
         return $this->belongsToMany(Author::class);
     }
 
-    public function edition() {
+    public function editions() {
         return $this->hasMany(Edition::class);
     }
 }

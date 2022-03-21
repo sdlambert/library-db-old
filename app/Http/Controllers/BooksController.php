@@ -72,8 +72,8 @@ class BooksController extends Controller
 
         // Order:
         // publisher (belongs to many editions)
-        // edition (has one publisher)
-        // book (has one edition, has many authors)
+        // book (has many editions, has many authors)
+        // edition (has one publisher, has one book)
         // author (has many books)
 
 
@@ -83,20 +83,6 @@ class BooksController extends Controller
             'name' => $publisherRequest["name"]
         ]);
 
-
-        // Edition
-        $editionRequest = request('edition');
-        $edition = Edition::firstOrCreate([
-            'isbn10'       => $editionRequest["isbn_10"],
-            'isbn13'       => $editionRequest["isbn_13"],
-            'publisher_id' => $publisher->id,
-            'goodreads'    => $editionRequest["goodreads"],
-            'openlibrary'  => $editionRequest["openlibrary"],
-            'publish_date' => $editionRequest["publish_date"],
-            'format'       => EditionFormat::coerce(ucfirst(request('edition.format'))),
-            'pages'        => $editionRequest["pages"]
-        ]);
-
         // Book
         $bookRequest = request('book');
         $book = Book::firstOrCreate([
@@ -104,8 +90,23 @@ class BooksController extends Controller
             'blurb'      => $bookRequest["blurb"],
             'cover'      => $bookRequest["cover"],
             'url'        => $bookRequest["url"],
-            'edition_id' => $edition->id,
         ]);
+
+        // Edition
+        $editionRequest = request('edition');
+        $edition = Edition::firstOrCreate([
+            'isbn10'       => $editionRequest["isbn_10"],
+            'isbn13'       => $editionRequest["isbn_13"],
+            'publisher_id' => $publisher->id,
+            'book_id'      => $book->id,
+            'goodreads'    => $editionRequest["goodreads"],
+            'openlibrary'  => $editionRequest["openlibrary"],
+            'publish_date' => $editionRequest["publish_date"],
+            'format'       => EditionFormat::coerce(ucfirst(request('edition.format'))),
+            'pages'        => $editionRequest["pages"]
+        ]);
+
+
 
         // Author(s)
         $authors = request('authors');
@@ -125,7 +126,6 @@ class BooksController extends Controller
             }
         }
 
-        // return book id, let Vue handle redirect
         return $book;
     }
 

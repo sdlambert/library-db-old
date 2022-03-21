@@ -19,6 +19,7 @@ class CreateEditionsTable extends Migration
             $table->string('isbn13', 64)->nullable();
             $table->string('isbn10',64)->nullable();
             $table->unsignedInteger('publisher_id');
+            $table->unsignedInteger('book_id');
             $table->string('publish_date', 64)->nullable();
             $table->smallInteger('pages')->nullable();
             $table->smallInteger('format')->default(EditionFormat::Hardcover);
