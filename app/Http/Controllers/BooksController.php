@@ -19,12 +19,23 @@ class BooksController extends Controller
         return view('books.index', ['books' => $books]);
     }
 
-    // Show a single book
-    public function show($isbn) {
-        $book = Book::where('isbn', $isbn)->firstOrFail();
 
-        return view('book', [
-            'books.show' => $book
+    // Show a single book
+    public function show ($id) {
+        $book = Book::find($id);
+        $authors = $book->authors;
+        $editions = $book->editions;
+        $publishers = [];
+
+        foreach ($editions as $edition) {
+            $publishers[] = $edition->publisher;
+        }
+
+        return view('books.show', [
+            'book' => $book,
+            'authors' => $authors,
+            'edition' => $editions,
+            'publisher' => $publishers
         ]);
     }
 
