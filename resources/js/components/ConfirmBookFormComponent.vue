@@ -4,12 +4,16 @@
             <div class="card">
                 <book v-bind:work="bookData"></book>
             </div>
-            <br>
+        </div>
+        <div class="col-12">
             <button @click="addBook" class="bg-success">Add Book</button>
-            <div class="alert-error" v-show="errors.length" v-for="error in errors">
-                <p>{{ error.message }}</p>
+        </div>
+        <div class="col-12">
+            <div id="alert-container" class="alert-error" v-show="errors.length">
+                <p class="is-marginless" v-for="error in errors">{{ error }}</p>
             </div>
         </div>
+    </div>
     </div>
 </template>
 
@@ -37,7 +41,17 @@ export default {
       axios.post('/books', this.bookData)
         .then(this.onSuccess)
         .catch(err => {
-          this.errors.push(err);
+          if(err.response) {
+            this.errors.push(err.response.data.message);
+            for(const key in err.response.data.errors) {
+              this.errors.push(...err.response.data.errors[key]);
+            }
+          } else if ( err.request ) {
+            this.errors.push(err.request)
+          } else {
+            this.errors.push(err.message);
+          }
+          scrollToId('alert-container');
         });
     },
     onSuccess(book) {
