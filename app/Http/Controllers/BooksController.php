@@ -34,8 +34,8 @@ class BooksController extends Controller
         return view('books.show', [
             'book' => $book,
             'authors' => $authors,
-            'edition' => $editions,
-            'publisher' => $publishers
+            'editions' => $editions,
+            'publishers' => $publishers
         ]);
     }
 
