@@ -17,7 +17,7 @@ class CreateBooksTable extends Migration
             $table->bigIncrements('id');
             $table->string('title', 256);
             $table->text('blurb')->nullable();
-            $table->string('cover', 256);
+            $table->string('cover', 256)->nullable();
             $table->string('url', 256);
             $table->timestamps();
         });

@@ -253,7 +253,7 @@ const actions = {
    */
   async setBook({ commit, dispatch }, response) {
     commit('setTitle', response.title);
-    commit('setCover', response.cover.medium || null);
+    commit('setCover', response.cover?.medium || null);
     commit('setUrl', response.url);
     await dispatch('searchWork');
   },
