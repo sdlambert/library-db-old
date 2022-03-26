@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome', [
-        'recentBooks' => App\Book::take(3)->latest()->get()
+        'recentBooks' => App\Book::take(12)->latest()->with('authors')->get()
     ]);
 });
 

@@ -22,10 +22,11 @@ import store from './store';
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('book', require('./components/BookComponent.vue').default);
-Vue.component('book-list', require('./components/BookListComponent.vue').default);
+Vue.component('book-grid', require('./components/BookGridComponent.vue').default);
+Vue.component('book-thumbnail', require('./components/BookThumbnailComponent.vue').default);
 Vue.component('book-search-form-component', require('./components/BookSearchFormComponent').default);
 Vue.component('confirm-book-form-component', require('./components/ConfirmBookFormComponent').default);
+Vue.component('confirm-book-thumbnail', require('./components/ConfirmBookThumbnailComponent.vue').default);
 Vue.component('show-button', require('./components/buttons/ButtonShow').default);
 Vue.component('isbn-scanner', require('./components/ISBNScanner').default)
 

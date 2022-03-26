@@ -5,7 +5,7 @@
         </header>
         <img :src="work.book.cover" alt="" height="240" width="180">
         <p>By {{ this.fullNames }}</p>
-        <a :href="work.book.url">OpenLibrary link</a>
+        <a :href="work.book.url" target="_blank">OpenLibrary link</a>
     </div>
 </template>
 
@@ -13,7 +13,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: "Book",
+  name: "ConfirmBookThumbnail",
   props: {
     work: Object
   },
@@ -31,6 +31,12 @@ export default {
       let last = authors.pop();
 
       return authors.length > 0 ? authors.join(', ') + ' and ' + last : last;
+    },
+    alt() {
+      return 'Cover for ' + this.work.book.title;
+    },
+    cover() {
+      return this.work.book.cover || '/images/default-book.png';
     }
   }
 }
@@ -40,5 +46,13 @@ export default {
     @import '../../sass/variables';
     img {
         background-color: $lighter-gray;
+    }
+    .book img {
+      width: 180px;
+      height: 240px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
     }
 </style>

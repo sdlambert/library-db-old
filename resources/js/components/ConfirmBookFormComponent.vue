@@ -2,7 +2,7 @@
     <div id="book-container" class="row">
         <div class="col-12" v-show="bookData">
             <div class="card">
-                <book v-bind:work="bookData"></book>
+                <confirm-book-thumbnail v-bind:work="bookData"></confirm-book-thumbnail>
             </div>
         </div>
         <div class="col-12">
@@ -13,7 +13,6 @@
                 <p class="is-marginless" v-for="error in errors">{{ error }}</p>
             </div>
         </div>
-    </div>
     </div>
 </template>
 
@@ -54,9 +53,8 @@ export default {
           scrollToId('alert-container');
         });
     },
-    onSuccess(book) {
-      console.log(book);
-      //window.href.location = `/books/${book.id}`
+    onSuccess(response) {
+      location.href = `/books/${response.data.id}`
     }
   }
 }

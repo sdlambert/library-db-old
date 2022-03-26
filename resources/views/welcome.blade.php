@@ -12,16 +12,7 @@
                     <h3>Recent Additions</h3>
                 </div>
                 <div class="col-12">
-                    <div class="book-grid">
-                        @foreach($recentBooks as $book)
-                            <div class="book">
-                                <a href="{{ route('books.show', $book->id) }}">
-                                    <img src="{{ $book->cover }}" alt="The cover image for {{ $book->title }}">
-                                    <h4>{{ $book->title }}</h4>
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
+                    <book-grid :books="{{ $recentBooks }}"></book-grid>
                 </div>
             </div>
         </div>

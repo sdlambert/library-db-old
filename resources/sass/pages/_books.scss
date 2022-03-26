@@ -10,8 +10,28 @@
   }
 
   .book {
+    position: relative;
     margin: 0 20px 20px;
     flex: 0 0 140px;
+    display: flex;
+    flex-direction: column;
+
+    img {
+      width: 180px;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 10px;
+    }
+
+    p {
+      margin-top: auto;
+    }
+
+    p, h4 {
+      margin-bottom: 0;
+    }
 
     @include media($small-screen) {
       flex: 0 0 250px;
