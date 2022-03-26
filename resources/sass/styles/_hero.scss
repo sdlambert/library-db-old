@@ -1,15 +1,16 @@
 .hero-banner {
   background: url('../images/books-hero-banner.jpg');
   background-repeat: no-repeat;
+  background-color: $white;
 
   @include media($small-screen-down) {
     background-size: cover;
-    background-position: bottom center;
+    background-position: center 20px;
     min-height: 250px;
   }
   @include media($small-screen) {
-    background-position: top center;
-    min-height: 450px;
+    background-position: center 15%;
+    min-height: 350px;
   }
 
   display: flex;
