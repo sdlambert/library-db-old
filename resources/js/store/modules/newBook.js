@@ -72,7 +72,7 @@ const mutations = {
 
   // Publisher (get 1st publisher, TODO more than one publisher?)
   setPublishers (state, publishers) {
-    state.publisher = publishers.shift();
+    state.publisher = publishers;
   },
 
   // Author(s)
@@ -137,7 +137,7 @@ const actions = {
       .then(async (response) => {
         // Mutations
         commit('setEditionKey', response.identifiers.openlibrary[0]);
-        commit('setPublishers', response.publishers);
+        commit('setPublishers', response.publishers?.shift() || "Unknown");
 
         // Actions
         dispatch('setAuthors', response.authors);
@@ -174,7 +174,7 @@ const actions = {
   async searchWork({ commit, getters }) {
     await openLib.searchByAPIType(getters.workKey, "work")
       .then(response => {
-        commit('setBlurb', response.description || null)
+        commit('setBlurb', response.description?.value || response.description || null)
       })
       .catch(console.error)
   },
