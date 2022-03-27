@@ -22,20 +22,10 @@ class BooksController extends Controller
 
     // Show a single book
     public function show ($id) {
-        $book = Book::find($id);
-        $authors = $book->authors;
-        $editions = $book->editions;
-        $publishers = [];
-
-        foreach ($editions as $edition) {
-            $publishers[] = $edition->publisher;
-        }
+        $book = Book::with(['authors', 'editions.publisher'])->find($id);
 
         return view('books.show', [
             'book' => $book,
-            'authors' => $authors,
-            'editions' => $editions,
-            'publishers' => $publishers
         ]);
     }
 
@@ -113,6 +103,7 @@ class BooksController extends Controller
             'goodreads'    => $editionRequest["goodreads"],
             'openlibrary'  => $editionRequest["openlibrary"],
             'publish_date' => $editionRequest["publish_date"],
+            // TODO refactor to mutator https://laravel.com/docs/6.x/eloquent-mutators#defining-a-mutator
             'format'       => EditionFormat::coerce(ucfirst(request('edition.format'))),
             'pages'        => $editionRequest["pages"]
         ]);
