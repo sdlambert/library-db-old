@@ -24,6 +24,7 @@ import store from './store';
 
 Vue.component('book-grid', require('./components/BookGridComponent.vue').default);
 Vue.component('book-thumbnail', require('./components/BookThumbnailComponent.vue').default);
+Vue.component('book-detail', require('./components/BookDetailComponent.vue').default);
 Vue.component('book-search-form-component', require('./components/BookSearchFormComponent').default);
 Vue.component('confirm-book-form-component', require('./components/ConfirmBookFormComponent').default);
 Vue.component('confirm-book-thumbnail', require('./components/ConfirmBookThumbnailComponent.vue').default);

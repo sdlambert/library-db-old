@@ -19,3 +19,19 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+@import '../../sass/variables';
+@import '../../sass/mixins/media';
+
+.book-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 -20px;
+
+  @include media($small-screen) {
+    justify-content: flex-start;
+  }
+}
+</style>
