@@ -105,7 +105,7 @@ export default {
       return `https://www.goodreads.com` + (this.book.editions[0].goodreads ? `/book/show/${this.book.editions[0].goodreads}` : `/search?q=${this.isbn}`);
     },
     openLibrary() {
-      return this.book.editions[0].openlibrary;
+      return `https://www.openlibrary.org/books/${this.book.editions[0].openlibrary}`;
     }
   }
 }
