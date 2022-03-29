@@ -5,14 +5,33 @@
         <section id="new-book" class="container">
 
             <div class="row">
-                <header class="col-12">
-                    <h2>Add a New Book</h2>
-                </header>
                 <div class="col">
-                    <show-button toggle-event="show-book-search">Search/Scan</show-button>
+                    <header>
+                        <h2>Quick Add</h2>
+                    </header>
+                    <div class="card">
+                        <header>
+                            <h4>Scan</h4>
+                        </header>
+                        <show-button toggle-event="show-book-search">Search/Scan</show-button>
+                    </div>
+                    <p class="text-center">-OR-</p>
+                    <div class="card">
+                        <header>
+                            <h4>Search</h4>
+                        </header>
+                        <button class="button show-toggle" type="button" data-target="create-book" disabled>Create</button>
+                    </div>
+{{--                    <p class="text-center">-OR-</p>--}}
+{{--                    <div class="card">--}}
+{{--                        <button class="button show-toggle" type="button" data-target="create-book" disabled>Manually Add</button>--}}
+{{--                    </div>--}}
                 </div>
+
                 <div class="col">
-                    <button class="button show-toggle" type="button" data-target="create-book" disabled>Create</button>
+
+                </div>
+                <div class="col-12">
                 </div>
             </div>
 

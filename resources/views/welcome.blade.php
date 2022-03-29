@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <a href="{{ route('books.create') }}" class="button primary">Add a Book</a>
+                    <a href="{{ route('books.create') }}" class="button primary">Quick Add</a>
                     <a href="{{ route('authors.create') }}" class="button primary">Add an Author</a>
                 </div>
                 <div class="col-12">
