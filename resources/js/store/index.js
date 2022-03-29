@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { createLogger } from 'vuex'
-import newBook from './modules/newBook';
+import newBook from './modules/newOpenLibraryBook';
 
 Vue.use(Vuex);
 
