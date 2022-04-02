@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import BookThumbnailComponent from "./BookThumbnailComponent";
+import BookThumbnailComponent from "./BookThumbnail";
 
 export default {
   components: {

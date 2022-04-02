@@ -23,20 +23,20 @@ import store from './store';
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 // Generic Components
-Vue.component('card', require('./components/CardComponent.vue').default);
-Vue.component('modal', require('./components/ModalComponent.vue').default);
-Vue.component('loader', require('./components/LoaderComponent').default);
+Vue.component('card', require('./components/BaseCard.vue').default);
+Vue.component('modal', require('./components/BaseModal.vue').default);
+Vue.component('loader', require('./components/BaseLoader').default);
 
 // Book
-Vue.component('book-grid', require('./components/BookGridComponent.vue').default);
-Vue.component('book-thumbnail', require('./components/BookThumbnailComponent.vue').default);
-Vue.component('book-detail', require('./components/BookDetailComponent.vue').default);
+Vue.component('book-grid', require('./components/BookGrid.vue').default);
+Vue.component('book-thumbnail', require('./components/BookThumbnail.vue').default);
+Vue.component('book-detail', require('./components/BookDetail.vue').default);
 
 // Book Search
-Vue.component('isbn-search', require('./components/ISBNSearchComponent').default);
-Vue.component('isbn-scanner', require('./components/ISBNScannerComponent').default);
-Vue.component('confirm-book-thumbnail', require('./components/ConfirmBookThumbnailComponent.vue').default);
-Vue.component('confirm-book-buttons', require('./components/ConfirmBookButtonsComponent').default);
+Vue.component('isbn-search', require('./components/ISBNSearch').default);
+Vue.component('isbn-scanner', require('./components/ISBNScanner').default);
+Vue.component('confirm-book-thumbnail', require('./components/ConfirmBookThumbnail.vue').default);
+Vue.component('confirm-book-buttons', require('./components/ConfirmBookButtons').default);
 
 
 Vue.component('show-button', require('./components/ButtonShow').default);
