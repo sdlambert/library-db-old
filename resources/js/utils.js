@@ -1,8 +1,6 @@
 // https://github.com/GitbookIO/isbn-utils#readme
 const isbnUtils = require('isbn-utils');
 
-const NUM_EXPECTED_ERROR_MESSAGE = `Expected a number`;
-
 export function scrollToId(targetId) {
   let targetElement = document.getElementById(targetId);
   if(targetElement) {
