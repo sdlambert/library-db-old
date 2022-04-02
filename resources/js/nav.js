@@ -19,7 +19,7 @@ smoothscroll.polyfill();
   // LINKS TO ANCHORS
   document.querySelectorAll('a[href^="#"]').forEach(function (el) {
     el.addEventListener('click', function (e) {
-      let target = e.target.getAttribute('href');
+      let target = document.querySelector(e.target.getAttribute('href'));
       if (target) {
         e.preventDefault();
         let targetEl = document.querySelector(target).scrollIntoView({behavior: 'smooth'});
