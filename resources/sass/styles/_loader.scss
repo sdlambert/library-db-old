@@ -1,10 +1,6 @@
-$loader-color: $slate-blue;
+$loader-color: $white;
 $loader-size: 20px;
 
 .loader {
   @include loader09;
-}
-
-.loader-container {
-  height: 250px;
 }

@@ -22,14 +22,24 @@ import store from './store';
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+// Generic Components
+Vue.component('card', require('./components/CardComponent.vue').default);
+Vue.component('modal', require('./components/ModalComponent.vue').default);
+Vue.component('loader', require('./components/LoaderComponent').default);
+
+// Book
 Vue.component('book-grid', require('./components/BookGridComponent.vue').default);
 Vue.component('book-thumbnail', require('./components/BookThumbnailComponent.vue').default);
 Vue.component('book-detail', require('./components/BookDetailComponent.vue').default);
-Vue.component('book-search-form-component', require('./components/BookSearchFormComponent').default);
-Vue.component('confirm-book-form-component', require('./components/ConfirmBookFormComponent').default);
+
+// Book Search
+Vue.component('isbn-search', require('./components/ISBNSearchComponent').default);
+Vue.component('isbn-scanner', require('./components/ISBNScannerComponent').default);
 Vue.component('confirm-book-thumbnail', require('./components/ConfirmBookThumbnailComponent.vue').default);
-Vue.component('show-button', require('./components/buttons/ButtonShow').default);
-Vue.component('isbn-scanner', require('./components/ISBNScanner').default)
+Vue.component('confirm-book-buttons', require('./components/ConfirmBookButtonsComponent').default);
+
+
+Vue.component('show-button', require('./components/ButtonShow').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
