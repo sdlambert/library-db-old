@@ -27,6 +27,12 @@ class CreateEditionsTable extends Migration
             $table->string('openlibrary', 64)->nullable();
             $table->timestamps();
 
+            // if you delete a publisher, delete all related publisher edition relationships
+            // you should never delete an publisher
+            $table->foreign('publisher_id')->references('id')->on('publishers')->onDelete('cascade');
+            // if you delete a book, delete all related publisher edition relationships
+            // you should only delete a book if you delete the last edition
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');;
         });
     }
 
