@@ -71,14 +71,16 @@ export default {
     },
   },
   created() {
-    eventHub.$on('close-modal', this.scrollToScanner);
+    eventHub.$on('onCloseModalClick', this.scrollToScanner);
   },
   beforeDestroy () {
-    eventHub.$off('close-modal',  this.scrollToScanner);
+    eventHub.$off('onCloseModalClick',  this.scrollToScanner);
   }
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .isbn-scanner {
+    margin-bottom: 2rem;
+  }
 </style>

@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="button-wrap">
-        <button class="button primary" @click="saveAddMore">Save and Add More</button>
-        <button class="button success" @click="saveView">Save and View</button>
+            <button type="button" class="button primary" @click.stop="saveAddMore">Save and Add More</button>
+            <button type="button" class="button success" @click.stop="saveView">Save and View</button>
         </div>
         <error-alert v-if="errors.length" :errors="errors"></error-alert>
     </div>
@@ -10,7 +10,7 @@
 
 <script>
 import { scrollToId } from "../utils";
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import eventHub from "./eventHub";
 
 export default {
@@ -34,7 +34,7 @@ export default {
         .catch(this.handleErrors);
     },
     closeModal() {
-      eventHub.$emit('close-modal', 'book-thumbnail-modal');
+      eventHub.$emit('onCloseModalClick', 'book-thumbnail-modal');
     },
     redirectToBookView(response) {
       location.href = `/books/${response.data.id}`

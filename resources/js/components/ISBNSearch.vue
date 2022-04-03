@@ -60,19 +60,18 @@ export default {
   data() {
     return {
       isbn: null,
-      errors: [],
+      apiErrors: [],
       isLoading: false,
       targetId: 'book-thumbnail-modal'
     }
   },
   methods: {
     throwError(errorMessage) {
-      this.errors.push(errorMessage);
+      this.apiErrors.push(errorMessage);
       console.error(errorMessage);
-      scrollToId('alert-container');
     },
     clearErrors() {
-      this.errors = [];
+      this.apiErrors = [];
     },
     launchModal() {
       eventHub.$emit('show-modal', this.targetId);
@@ -108,10 +107,10 @@ export default {
     },
   },
   created() {
-    eventHub.$on('close-modal', this.resetFormFromModal);
+    eventHub.$on('onCloseModalClick', this.resetFormFromModal);
   },
   beforeDestroy () {
-    eventHub.$off('close-modal',  this.resetFormFromModal);
+    eventHub.$off('onCloseModalClick',  this.resetFormFromModal);
   }
 }
 </script>
@@ -129,6 +128,7 @@ export default {
   form {
     display: flex;
     align-items: flex-start;
+    margin-bottom: 2rem;
   }
 
   span {

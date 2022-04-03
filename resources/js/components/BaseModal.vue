@@ -3,7 +3,7 @@
         <div class="modal" :id="id">
             <header>
                 <slot name="header"></slot>
-                <button type="button" class="btn-close" @click="close">
+                <button type="button" id="modal-close-button" class="btn-close" @click.stop="close">
                     &times;
                 </button>
             </header>
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     close() {
-      eventHub.$emit('close-modal', this.id);
+      eventHub.$emit('onCloseModalClick', this.id);
       this.isModalVisible = false;
     },
     show(id) {
@@ -63,7 +63,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
+    z-index: 9;
   }
 
   .modal {
@@ -75,6 +75,7 @@ export default {
     padding: 2rem;
     background-color: $white;
     box-shadow: 2px 2px 20px 1px;
+    z-index: 10;
   }
 
   .btn-close {
