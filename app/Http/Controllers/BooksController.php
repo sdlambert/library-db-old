@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreNewBook;
 use App\Author;
 use App\Edition;
 use App\Publisher;
 use App\Book;
 use App\Enums\EditionFormat;
-use BenSampo\Enum\Rules\EnumValue;
 
 class BooksController extends Controller
 {
@@ -40,36 +39,13 @@ class BooksController extends Controller
         ]);
     }
 
-    // Persists the book in the database
-    public function store() {
+    /** Persists the book in the database
+     * @param StoreNewBook $request
+     * @return Book|\Illuminate\Database\Eloquent\Model
+     */
+    public function store(StoreNewBook $request) {
 
-        request()->validate([
-            // authors
-            'authors.*.birth_date'    => 'nullable|string',
-            'authors.*.death_date'    => 'nullable|string',
-            'authors.*.first_name'    => 'required|string',
-            'authors.*.last_name'     => 'nullable|string',
-            'authors.*.ol_author_key' => 'required|string',
-            //pseudonym?
-
-            // publishers
-            'publisher.name'          => 'required|string',
-
-            // edition
-            'edition.isbn_10'         => 'required_if:edition.isbn13,null|nullable|string', // must allow nullable
-            'edition.isbn_13'         => 'required_if:edition.isbn10,null|nullable|string', // must allow nullable
-            'edition.goodreads'       => 'nullable|string',
-            'edition.openlibrary'     => 'nullable|string',
-            'edition.publish_date'    => 'nullable|string',
-            'edition.format'          => 'nullable|string',
-            'edition.pages'           => 'nullable|integer',
-
-            // book
-            'book.title'              => 'required|string',
-            'book.blurb'              => 'nullable|string',
-            'book.url'                => 'nullable|url',
-            'book.cover'              => 'nullable|url',
-        ]);
+        $validated = $request->validated();
 
         // Order:
         // publisher (belongs to many editions)
@@ -77,15 +53,14 @@ class BooksController extends Controller
         // edition (has one publisher, has one book)
         // author (has many books)
 
-
         // Publisher
-        $publisherRequest = request('publisher');
+        $publisherRequest = $validated['publisher'];
         $publisher = Publisher::firstOrCreate([ // find first result or create new
             'name' => $publisherRequest["name"]
         ]);
 
         // Book
-        $bookRequest = request('book');
+        $bookRequest = $validated['book'];
         $book = Book::firstOrCreate([
             'title'      => $bookRequest["title"],
             'blurb'      => $bookRequest["blurb"],
@@ -94,8 +69,8 @@ class BooksController extends Controller
         ]);
 
         // Edition
-        $editionRequest = request('edition');
-        $edition = Edition::firstOrCreate([
+        $editionRequest = $validated['edition'];
+        Edition::firstOrCreate([
             'isbn10'       => $editionRequest["isbn_10"],
             'isbn13'       => $editionRequest["isbn_13"],
             'publisher_id' => $publisher->id,
@@ -104,14 +79,14 @@ class BooksController extends Controller
             'openlibrary'  => $editionRequest["openlibrary"],
             'publish_date' => $editionRequest["publish_date"],
             // TODO refactor to mutator https://laravel.com/docs/6.x/eloquent-mutators#defining-a-mutator
-            'format'       => EditionFormat::coerce(ucfirst(request('edition.format'))),
+            'format'       => EditionFormat::coerce(ucfirst($editionRequest['format'])),
             'pages'        => $editionRequest["pages"]
         ]);
 
 
 
         // Author(s)
-        $authors = request('authors');
+        $authors = $validated['authors'];
         foreach($authors as $author) {
             $auth = Author::firstOrCreate([
                 'first_name'    => $author['first_name'],
