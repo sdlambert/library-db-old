@@ -13,11 +13,6 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: "ConfirmBookThumbnail",
-  data() {
-    return {
-    }
-  },
   computed: {
     ...mapGetters('newOpenLibraryBook', [
       "authorFullNames",
