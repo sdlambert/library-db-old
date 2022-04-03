@@ -26,6 +26,7 @@ import store from './store';
 Vue.component('card', require('./components/BaseCard.vue').default);
 Vue.component('modal', require('./components/BaseModal.vue').default);
 Vue.component('loader', require('./components/BaseLoader').default);
+Vue.component('error-alert', require('./components/ErrorAlert').default);
 
 // Book
 Vue.component('book-grid', require('./components/BookGrid.vue').default);
