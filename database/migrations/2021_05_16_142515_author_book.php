@@ -26,7 +26,7 @@ class AuthorBook extends Migration
             $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
             // if you delete a book, delete all related book author relationships
             // you should only delete a book if you delete the last edition
-                $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
         });
     }
 
