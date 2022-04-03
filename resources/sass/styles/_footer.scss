@@ -1,3 +1,14 @@
+footer {
+  background-color: $teal;
+  color: $white;
+  overflow: hidden;
+
+  a {
+    color: $white;
+    text-decoration: underline;
+  }
+}
+
 #scroll-to-top {
   bottom: 10px;
   right: 10px;
