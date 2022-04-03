@@ -1,10 +1,10 @@
 <template>
-    <div class="button-wrap">
+    <div>
+        <div class="button-wrap">
         <button class="button primary" @click="saveAddMore">Save and Add More</button>
         <button class="button success" @click="saveView">Save and View</button>
-        <div id="alert-container" class="alert-error" v-show="errors.length" v-for="error in errors">
-            {{ error }}
         </div>
+        <error-alert v-if="errors.length" :errors="errors"></error-alert>
     </div>
 </template>
 
@@ -50,7 +50,6 @@ export default {
       } else {
         this.errors.push(err.message);
       }
-      scrollToId('alert-container');
     },
   },
   computed: {
@@ -65,5 +64,6 @@ export default {
 <style scoped lang="scss">
   .button-wrap {
     display: flex;
+    margin-bottom: 2rem;
   }
 </style>

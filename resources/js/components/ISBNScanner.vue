@@ -1,9 +1,7 @@
 <template>
     <div class="isbn-scanner">
         <div id="qr-code-full-region"></div>
-        <div id="alert-container" class="alert-error" v-show="errors.length" v-for="error in errors">
-            <p>{{ error }}</p>
-        </div>
+        <error-alert v-if="errors.length" errors="errors"></error-alert>
     </div>
 </template>
 
