@@ -1,3 +1,17 @@
 .card {
   margin-bottom: 2rem;
 }
+
+#login-card, #register-card {
+  max-width: 600px;
+  margin: 0 auto;
+
+  label {
+    width: 120px;
+    margin-bottom: 0;
+  }
+
+  .col-6 {
+    margin-bottom: 0;
+  }
+}

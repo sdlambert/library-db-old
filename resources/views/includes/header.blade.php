@@ -13,6 +13,18 @@
             <ul class="menu-left">
                 <li><a href="/books">Books</a></li>
                 <li><a href="/authors">Authors</a></li>
+                @if (Route::has('login'))
+
+                    @auth
+{{--                        <li><a href="{{ route('logout') }}">Logout</a></li>--}}
+                    @else
+                        <li><a href="{{ route('login') }}">Login</a></li>
+
+                        @if (Route::has('register'))
+                            <li><a href="{{ route('register') }}">Register</a></li>
+                        @endif
+                    @endauth
+                @endif
             </ul>
         </nav>
     </div>

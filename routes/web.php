@@ -37,3 +37,7 @@ Route::get('/books/{id}', 'BooksController@show')->name('books.show');
 Route::get('/authors', 'AuthorsController@index')->name('authors.index');
 Route::get('/authors/create', 'AuthorsController@create')->name('authors.create');
 Route::post('/authors', 'AuthorsController@store')->name('authors.store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
