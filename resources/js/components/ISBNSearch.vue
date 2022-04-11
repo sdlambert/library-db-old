@@ -20,7 +20,7 @@
 // Validation
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import { extend, configure } from 'vee-validate';
-import {isbnStringToInt, isValidIsbnRegEx, scrollToId} from "../utils";
+import { isbnStringToInt, isValidIsbnRegEx } from "../utils";
 import eventHub from './eventHub';
 
 
