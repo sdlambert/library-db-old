@@ -3,10 +3,10 @@
         <div id="book-title">
             <h2>{{ book.title }}</h2>
             <div id="icon-links" class=" text-center">
-                <a :href="goodreads" class="icon" target="_blank">
+                <a :href="goodreads" class="icon icon-link" target="_blank">
                     <img src="/images/icons/goodreads_sm.png" alt="Goodreads icon">
                 </a>
-                <a :href="openLibrary" class="icon icon-shadow" target="_blank">
+                <a :href="openLibrary" class="icon icon-link icon-shadow" target="_blank">
                     <img src="/images/icons/open-library-logo.png" alt="Open Libary icon">
                 </a>
             </div>
@@ -44,7 +44,7 @@
                 <div id="editions">
                     <h3>Edition<span v-if="book.editions.length > 1">s</span></h3>
                     <div v-for="(edition, index) in book.editions">
-                        <hr v-if="index > 1">
+                        <hr v-if="index > 0">
                         <dl>
                             <div>
                                 <dt>Format</dt>
@@ -144,11 +144,6 @@ h2, h3 {
 
 .icon {
   margin-right: 10px;
-  height: 32px;
-}
-
-.icon-shadow {
-  box-shadow: 0 1px 1px rgba(0,0,0,0.3);
 }
 
 #book-detail {
