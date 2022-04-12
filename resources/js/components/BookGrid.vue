@@ -14,9 +14,6 @@ export default {
   props: {
     books: Array
   },
-  mounted() {
-    console.log('Component mounted.')
-  }
 }
 </script>
 

@@ -91,9 +91,6 @@ export default {
   props: {
     book: Object
   },
-  mounted() {
-    console.log(this.book);
-  },
   computed: {
     alt() {
       return `The cover image for ${this.book.title}`;
