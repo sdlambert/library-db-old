@@ -21,7 +21,9 @@
 </head>
 
 <body>
-    {!! file_get_contents('images/sprite.svg') !!}
+    <div class="is-hidden">
+        {!! file_get_contents('images/sprite.svg') !!}
+    </div>
     @include('includes.header')
 
     <div id="app">

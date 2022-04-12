@@ -1,0 +1,22 @@
+$x-small-icon: 16px;
+$small-icon: 24px;
+$medium-icon: 48px;
+$large-icon: 72px;
+
+.icon {
+  display: inline-block;
+
+  &.icon-x-sm {
+    width: $x-small-icon;
+    height: $x-small-icon;
+  }
+
+  &.icon-sm {
+    width: $small-icon;
+    height: $small-icon;
+  }
+
+  &.white {
+    fill: $white;
+  }
+}
