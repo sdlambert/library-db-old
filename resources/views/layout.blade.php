@@ -21,7 +21,7 @@
 </head>
 
 <body>
-
+    {!! file_get_contents('images/sprite.svg') !!}
     @include('includes.header')
 
     <div id="app">

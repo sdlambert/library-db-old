@@ -7,7 +7,8 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "svgsprite": "svgstore -o ./resources/images/sprite.svg -p 'icon-' --inline ./resources/images/svg/*.svg"
     },
     "devDependencies": {
         "axios": "^0.21.1",
@@ -31,6 +32,7 @@
         "parse-full-name": "^1.2.5",
         "smoothscroll-polyfill": "^0.4.4",
         "spinthatshit": "^1.0.4",
+        "svgstore-cli": "^2.0.1",
         "vee-validate": "^3.4.5",
         "vuex": "^3.6.2"
     }
