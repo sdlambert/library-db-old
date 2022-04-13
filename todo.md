@@ -1,8 +1,15 @@
 # Todo
 
-## General 
+## Books
 
-- Focus instead on consuming API and saving data
+- Index
+    - Pagination
+    - Posts per
+    - Grid/Row toggle
+    - Search (authors/books)
+- Create
+- Edit/Update
+- Delete
 
 ## Search
 
