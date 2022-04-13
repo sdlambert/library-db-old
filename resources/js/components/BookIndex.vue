@@ -4,7 +4,7 @@
             <!-- TODO title/author search -->
             <!-- TODO grid/table toggle search -->
         </header>
-        <table id="book-index">
+        <table id="book-index" v-if="showTable">
             <thead>
             <tr>
                 <th></th>
@@ -18,14 +18,17 @@
             <book-row v-for="book in books" :work="book" :key="book.id"></book-row>
             </tbody>
         </table>
+        <book-grid v-if="showGrid" :books="books"></book-grid>
         <footer>
-            <pagination></pagination>
+            <pagination :links="links" :meta="meta"></pagination>
             <error-alert v-if="errors.length" :errors="errors"></error-alert>
         </footer>
     </section>
 </template>
 
 <script>
+
+import eventHub from "./eventHub";
 
 const booksIndexUrl = '/api/books';
 
@@ -38,7 +41,9 @@ export default {
       errors: [],
       books: [],
       links: {},
-      meta: {}
+      meta: {},
+      showGrid: false,
+      showTable: true
     }
   },
   methods: {
@@ -46,8 +51,8 @@ export default {
       this.errors.push(errorMessage);
       console.error(errorMessage);
     },
-    async fetchBooks() {
-      return await fetch(booksIndexUrl)
+    async fetchBooks(path = booksIndexUrl) {
+      return await fetch(path)
         .then(response => response.json())
         .then(booksData => {
           this.books = booksData.data;
@@ -61,8 +66,15 @@ export default {
     this.fetchBooks()
       .catch(err => {
         this.errors.push(err);
-      })
-    ;
+      });
+  },
+  created() {
+    eventHub.$on('paginate-previous', this.fetchBooks);
+    eventHub.$on('paginate-next', this.fetchBooks);
+  },
+  beforeDestroy () {
+    eventHub.$off('paginate-previous', this.fetchBooks);
+    eventHub.$off('paginate-next', this.fetchBooks);
   }
 }
 </script>
