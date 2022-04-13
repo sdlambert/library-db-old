@@ -25,7 +25,7 @@ Route::get('/', function () {
 // DELETE /books/:isbn -- @destroy
 
 // Books
-Route::get('/books', 'BooksController@index')->name('books.index');
+Route::view('/books', 'books.index')->name('books.index');
 Route::get('/books/create', 'BooksController@create')->name('books.create');
 Route::post('/books', 'BooksController@store')->name('books.store');
 Route::get('/books/{id}', 'BooksController@show')->name('books.show');

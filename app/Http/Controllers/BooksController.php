@@ -9,15 +9,10 @@ use App\Edition;
 use App\Publisher;
 use App\Book;
 use App\Enums\EditionFormat;
+use Illuminate\Http\Request;
 
 class BooksController extends Controller
 {
-    // Render a list of all books
-    public function index() {
-        $books = Book::latest()->get();
-
-        return view('books.index', ['books' => $books]);
-    }
 
 
     // Show a single book

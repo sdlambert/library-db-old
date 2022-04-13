@@ -29,6 +29,8 @@ Vue.component('loader', require('./components/BaseLoader').default);
 Vue.component('error-alert', require('./components/ErrorAlert').default);
 
 // Book
+Vue.component('book-index', require('./components/BookIndex.vue').default);
+Vue.component('book-row', require('./components/BookRow.vue').default);
 Vue.component('book-grid', require('./components/BookGrid.vue').default);
 Vue.component('book-thumbnail', require('./components/BookThumbnail.vue').default);
 Vue.component('book-detail', require('./components/BookDetail.vue').default);

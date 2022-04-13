@@ -1,6 +1,8 @@
 <?php
 
+use App\Book;
 use Illuminate\Http\Request;
+use App\Http\Resources\Books as BooksResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,8 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/books', function () {
+    return new BooksResource(Book::with(['authors', 'editions.publisher'])->paginate(12));
 });
