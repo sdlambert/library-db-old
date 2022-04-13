@@ -22,8 +22,7 @@ export default {
   },
   computed: {
     authorFullNames() {
-      let authors = this.work.authors;
-      return authors.map((author) => {
+      return this.work.authors.map((author) => {
         return `${author.first_name} ${author.last_name}`;
       });
     },
