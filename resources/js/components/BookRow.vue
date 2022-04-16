@@ -78,12 +78,15 @@ tr {
 
 td {
   padding: 1rem 0;
+  vertical-align: top;
+
   &:nth-child(n+2) {
     padding: 1rem 2rem;
   }
 
   &:nth-child(n+4) {
     display: none;
+
     @include media($medium-screen) {
       display: table-cell;
     }
@@ -93,7 +96,6 @@ td {
 .button-row {
   display: flex;
   flex-direction: column;
-
 
   button {
     margin: 0;
@@ -114,7 +116,7 @@ td {
 .cover {
   position: relative;
   min-width: 40px;
-  max-width: 100px;
+  max-width: 60px;
 
   .view-icon {
     position: absolute;

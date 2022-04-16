@@ -83,6 +83,10 @@ export default {
 @import 'resources/sass/variables';
 @import 'resources/sass/mixins/media';
 
+table {
+  margin-bottom: 2.5rem;
+}
+
 th {
   padding: 0 10px 20px;
 
