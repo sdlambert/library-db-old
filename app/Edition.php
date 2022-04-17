@@ -42,4 +42,13 @@ class Edition extends Model
         $value = (int)$this->attributes['format'];
         return EditionFormat::getDescription($value);
     }
+
+    /**
+     * Coerces a string into an edition format
+     * @param $formatString
+     * @return void
+     */
+    public function setFormatAttribute($formatString) {
+        $this->format = EditionFormat::coerce(ucfirst($formatString));
+    }
 }
