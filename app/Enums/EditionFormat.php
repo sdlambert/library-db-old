@@ -11,7 +11,8 @@ use BenSampo\Enum\Enum;
  */
 final class EditionFormat extends Enum
 {
-    const Unknown         = 0;
-    const Hardcover       = 1;
-    const Paperback       = 2;
+    const Unknown             = 0;
+    const Hardcover           = 1;
+    const Paperback           = 2;
+    const MassMarketPaperback = 3;
 }
