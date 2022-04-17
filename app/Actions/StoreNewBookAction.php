@@ -5,6 +5,7 @@ namespace App\Actions;
 use App\Author;
 use App\Book;
 use App\Edition;
+use App\Enums\EditionFormat;
 use App\Publisher;
 
 class StoreNewBookAction
@@ -42,6 +43,8 @@ class StoreNewBookAction
     private function addEdition(Array $edition, Book $book, Publisher $publisher): void
     {
         Edition::firstOrCreate([
+            'openlibrary'  => $edition["openlibrary"],
+        ],[
             'isbn10'       => $edition["isbn_10"],
             'isbn13'       => $edition["isbn_13"],
             'publisher_id' => $publisher->id,
