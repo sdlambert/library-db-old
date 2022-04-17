@@ -30,9 +30,16 @@ export default {
     }
   },
   methods: {
+    closeModalById(modalId) {
+      // if we have an id string, it's from outside the modal, otherwise close this modal
+      if(this.id === modalId) {
+        this.isModalVisible = false;
+        eventHub.$emit('modal-closed', this.id);
+      }
+    },
     close() {
-      eventHub.$emit('onCloseModalClick', this.id);
       this.isModalVisible = false;
+      eventHub.$emit('modal-closed', this.id);
     },
     show(id) {
       if(this.id === id) {
@@ -42,9 +49,11 @@ export default {
   },
   created() {
     eventHub.$on('show-modal', this.show);
+    eventHub.$on('close-modal-click', this.closeModalById);
   },
   beforeDestroy () {
-    eventHub.$off('show-modal',  this.show);
+    eventHub.$off('show-modal',  this.close);
+    eventHub.$off('close-modal-click', this.closeModalById);
   }
 }
 </script>

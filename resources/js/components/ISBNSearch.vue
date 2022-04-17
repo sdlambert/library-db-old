@@ -107,10 +107,10 @@ export default {
     },
   },
   created() {
-    eventHub.$on('onCloseModalClick', this.resetFormFromModal);
+    eventHub.$on('modal-closed', this.resetFormFromModal);
   },
   beforeDestroy () {
-    eventHub.$off('onCloseModalClick',  this.resetFormFromModal);
+    eventHub.$off('modal-closed',  this.resetFormFromModal);
   }
 }
 </script>

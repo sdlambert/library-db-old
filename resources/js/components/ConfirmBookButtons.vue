@@ -34,7 +34,7 @@ export default {
         .catch(this.handleErrors);
     },
     closeModal() {
-      eventHub.$emit('onCloseModalClick', 'book-thumbnail-modal');
+      eventHub.$emit('close-modal-click', 'book-thumbnail-modal');
     },
     redirectToBookView(response) {
       location.href = `/books/${response.data.id}`

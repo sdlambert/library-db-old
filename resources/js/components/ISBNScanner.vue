@@ -71,10 +71,10 @@ export default {
     },
   },
   created() {
-    eventHub.$on('onCloseModalClick', this.scrollToScanner);
+    eventHub.$on('modal-closed', this.scrollToScanner);
   },
   beforeDestroy () {
-    eventHub.$off('onCloseModalClick',  this.scrollToScanner);
+    eventHub.$off('modal-closed',  this.scrollToScanner);
   }
 }
 </script>
