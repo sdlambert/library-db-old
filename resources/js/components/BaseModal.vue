@@ -92,8 +92,8 @@ export default {
     top: 0;
     right: 0;
     border: none;
-    font-size: 20px;
-    padding: 10px;
+    font-size: 2rem;
+    padding: 2rem;
     cursor: pointer;
     font-weight: bold;
     color: $gray;
