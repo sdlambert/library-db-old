@@ -8,21 +8,20 @@ const getDefaultState = () => {
       title: null,
       cover: null,
       blurb: null,
-      url: null
+      url: null,
+      ol_work_key: null,
     },
     edition: {
       isbn_10: null,
       isbn_13: null,
       goodreads: null,
-      openlibrary: null,
+      ol_edition_key: null,
       publish_date: null,
       pages: null,
       format: null
     },
     publisher: null,
     authors: null,
-    editionKey: null,
-    workKey: null
   }
 }
 
@@ -35,8 +34,8 @@ const state = getDefaultState();
 // =====================================================
 
 const getters = {
-  editionKey: state => state.editionKey,
-  workKey: state => state.workKey,
+  editionKey: state => state.edition.ol_edition_key,
+  workKey: state => state.book.ol_work_key,
   currentBook: state => {
     return {
       book: state.book,
@@ -62,14 +61,6 @@ const mutations = {
     Object.assign(state, getDefaultState());
   },
 
-  // Keys
-  setWorkKey (state, key) {
-    state.workKey = key;
-  },
-  setEditionKey (state, key) {
-    state.editionKey = key;
-  },
-
   // Publisher (get 1st publisher, TODO more than one publisher?)
   setPublishers (state, publishers) {
     state.publisher = publishers;
@@ -93,6 +84,9 @@ const mutations = {
   setFormat (state, format) {
     state.edition.format = format;
   },
+  setEditionKey(state, editionKey) {
+    state.edition.ol_edition_key = editionKey
+  },
 
   // Book
   setTitle (state, title) {
@@ -106,6 +100,9 @@ const mutations = {
   },
   setBlurb (state, blurb) {
     state.book.blurb = blurb;
+  },
+  setWorkKey (state, workKey) {
+    state.book.ol_work_key = workKey;
   }
 };
 

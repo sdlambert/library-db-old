@@ -37,7 +37,7 @@ export default {
       eventHub.$emit('close-modal-click', 'book-thumbnail-modal');
     },
     redirectToBookView(response) {
-      location.href = `/books/${response.data.id}`
+      location.href = `/books/${response.data.book.id}`
     },
     handleErrors(err) {
       if (err.response) {

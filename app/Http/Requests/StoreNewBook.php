@@ -40,7 +40,7 @@ class StoreNewBook extends FormRequest
             'edition.isbn_10'         => 'required_if:edition.isbn13,null|nullable|string', // must allow nullable
             'edition.isbn_13'         => 'required_if:edition.isbn10,null|nullable|string', // must allow nullable
             'edition.goodreads'       => 'nullable|string',
-            'edition.openlibrary'     => 'nullable|string',
+            'edition.ol_edition_key'  => 'nullable|string',
             'edition.publish_date'    => 'nullable|string',
             'edition.format'          => 'nullable|string',
             'edition.pages'           => 'nullable|integer',
@@ -50,6 +50,7 @@ class StoreNewBook extends FormRequest
             'book.blurb'              => 'nullable|string',
             'book.url'                => 'nullable|url',
             'book.cover'              => 'nullable|url',
+            'book.ol_work_key'        => 'nullable|string',
         ];
     }
 }

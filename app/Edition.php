@@ -13,7 +13,7 @@ class Edition extends Model
         'publisher_id',
         'book_id',
         'goodreads',
-        'openlibrary',
+        'ol_edition_key',
         'publish_date',
         'format',
         'pages',

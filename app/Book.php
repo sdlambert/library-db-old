@@ -11,6 +11,7 @@ class Book extends Model
         'blurb',
         'cover',
         'url',
+        'ol_work_key'
     ];
 
     public function authors() {

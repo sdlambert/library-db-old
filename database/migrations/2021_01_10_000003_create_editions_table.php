@@ -24,7 +24,7 @@ class CreateEditionsTable extends Migration
             $table->smallInteger('pages')->nullable();
             $table->smallInteger('format')->default(EditionFormat::Hardcover);
             $table->string('goodreads', 64)->nullable();
-            $table->string('openlibrary', 64)->nullable();
+            $table->string('ol_edition_key', 16);
             $table->timestamps();
 
             // if you delete a publisher, delete all related publisher edition relationships

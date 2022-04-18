@@ -19,6 +19,7 @@ class CreateBooksTable extends Migration
             $table->text('blurb')->nullable();
             $table->string('cover', 256)->nullable();
             $table->string('url', 256);
+            $table->string('ol_work_key', 16);
             $table->timestamps();
         });
     }
