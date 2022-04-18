@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-backdrop" v-if="isModalVisible" @click="close">
+    <div class="modal-backdrop" v-if="isModalVisible" @click.self="close">
         <div class="modal" :id="id">
             <header>
                 <slot name="header"></slot>
