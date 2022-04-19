@@ -48,8 +48,9 @@ namespace App{
  * @property int $id
  * @property string $title
  * @property string|null $blurb
- * @property string $cover
+ * @property string|null $cover
  * @property string $url
+ * @property string $ol_work_key
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Author[] $authors
@@ -63,6 +64,7 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Book whereCover($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Book whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Book whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Book whereOlWorkKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Book whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Book whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Book whereUrl($value)
@@ -83,10 +85,11 @@ namespace App{
  * @property int|null $pages
  * @property int $format
  * @property string|null $goodreads
- * @property string|null $openlibrary
+ * @property string $ol_edition_key
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Book $book
+ * @property-read string $format_description
  * @property-read \App\Publisher $publisher
  * @method static \Illuminate\Database\Eloquent\Builder|Edition newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Edition newQuery()
@@ -98,7 +101,7 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Edition whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Edition whereIsbn10($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Edition whereIsbn13($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Edition whereOpenlibrary($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Edition whereOlEditionKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Edition wherePages($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Edition wherePublishDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Edition wherePublisherId($value)
