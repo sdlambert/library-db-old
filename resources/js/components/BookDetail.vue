@@ -13,8 +13,7 @@
         </div>
         <div id="book-detail">
             <div id="book">
-                <img :src="book.cover" :alt="alt">
-
+                <img :src="cover" :alt="alt">
             </div>
             <div id="book-meta">
                 <div id="authors">
@@ -94,6 +93,9 @@ export default {
   computed: {
     alt() {
       return `The cover image for ${this.book.title}`;
+    },
+    cover() {
+      return this.book.cover || '/images/default-book.png';
     },
     isbn() {
       return this.book.editions[0].isbn13 || this.book.editions[0].isbn10;
