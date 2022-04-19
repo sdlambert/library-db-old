@@ -1,7 +1,10 @@
 <template>
     <div class="col-12">
         <div id="book-title">
-            <h2>{{ book.title }}</h2>
+            <h2>
+                {{ book.title }}
+                <a :href="editLink"><svg class="icon icon-sm"><use xlink:href="#icon-edit"></use></svg></a>
+            </h2>
             <div id="icon-links" class=" text-center">
                 <a :href="goodreads" class="icon icon-link" target="_blank">
                     <img src="/images/icons/goodreads_sm.png" alt="Goodreads icon">
@@ -103,6 +106,9 @@ export default {
     },
     openLibrary() {
       return `https://www.openlibrary.org/books/${this.book.editions[0].openlibrary}`;
+    },
+    editLink() {
+      return `/books/${this.book.id}/edit`;
     }
   }
 }
