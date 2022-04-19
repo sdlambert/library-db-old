@@ -26,6 +26,7 @@ import store from './store';
 Vue.component('card', require('./components/BaseCard.vue').default);
 Vue.component('modal', require('./components/BaseModal.vue').default);
 Vue.component('loader', require('./components/BaseLoader').default);
+Vue.component('toast', require('./components/BaseToast').default);
 Vue.component('error-alert', require('./components/ErrorAlert').default);
 Vue.component('pagination', require('./components/Pagination').default);
 
