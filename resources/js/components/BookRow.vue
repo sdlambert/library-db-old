@@ -81,13 +81,18 @@ td {
   vertical-align: top;
 
   &:nth-child(n+2) {
-    padding: 1rem 2rem;
+    padding: .5rem 1rem;
   }
 
   &:nth-child(n+4) {
     display: none;
+  }
 
-    @include media($medium-screen) {
+  @include media($medium-screen) {
+    &:nth-child(n+2) {
+      padding: 1rem 2rem;
+    }
+    &:nth-child(n+4) {
       display: table-cell;
     }
   }
@@ -132,6 +137,11 @@ td {
     svg {
       flex: 0 0 50%;
     }
+  }
+
+  img, svg, .view-icon {
+    min-width: 40px;
+    max-width: 60px;
   }
 }
 </style>
