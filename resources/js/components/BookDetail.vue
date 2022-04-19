@@ -126,7 +126,11 @@ h2, h3 {
 
 #book-title {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
 
   @include media($small-screen) {
     flex-direction: row;
