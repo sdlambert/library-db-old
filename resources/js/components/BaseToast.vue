@@ -1,12 +1,14 @@
 <template>
     <div class="toast-wrap">
-        <transition-group name="toast" tag="div" class="toast-container" @add-toast="addToast">
+        <transition-group name="toast" tag="div" class="toast-container">
             <div class="toast" v-for="(message, index) in messages" :key="message.timestamp">{{ message.content }}</div>
         </transition-group>
     </div>
 </template>
 
 <script>
+import eventHub from "./eventHub";
+
 export default {
   data() {
     return {
@@ -25,13 +27,17 @@ export default {
       this.messages.pop();
     }
   },
-
+  created() {
+    eventHub.$on('add-toast', this.addToast);
+  },
+  beforeDestroy () {
+    eventHub.$off('add-toast', this.addToast);
+  }
 }
 </script>
 
 <style scoped lang="scss">
-@import '../../sass/variables';
-
+  @import '../../sass/variables';
 
   .toast-container {
     position: fixed;
@@ -54,8 +60,6 @@ export default {
       color: $white;
     }
   }
-
-
 
   .toast-enter,
   .toast-leave-to {
