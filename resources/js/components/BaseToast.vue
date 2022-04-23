@@ -1,8 +1,7 @@
 <template>
     <div class="toast-wrap">
-        <button @click="addToast">Add Toast</button>
-        <transition-group name="toast" tag="div" class="toast-container">
-            <p class="toast" v-for="(message, index) in messages" :key="message">{{ message }} {{ index }}</p>
+        <transition-group name="toast" tag="div" class="toast-container" @add-toast="addToast">
+            <div class="toast" v-for="(message, index) in messages" :key="message.timestamp">{{ message.content }}</div>
         </transition-group>
     </div>
 </template>
@@ -16,9 +15,11 @@ export default {
   },
   methods: {
     addToast(message) {
-      console.log("toast!");
-      this.messages.push("toast");
-      window.setTimeout(this.removeToast, 3000);
+      this.messages.unshift({
+        content: `${message}`,
+        timestamp: Date.now()
+      });
+      window.setTimeout(this.removeToast, 5000);
     },
     removeToast() {
       this.messages.pop();
@@ -37,17 +38,16 @@ export default {
     top: 1.5rem;
     right: 1.5rem;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   .toast {
-    padding: 30px;
+    padding: .5rem 1rem;
     display: block;
     line-height: 1;
     background-color: $slate-blue;
     color: $white;
-    transition: all 1.5ms ease-in-out;
-
+    margin-bottom: 1rem;
 
     &.success {
       background-color: var(--color-success);
@@ -55,9 +55,7 @@ export default {
     }
   }
 
-  .toast-list-move {
-    transition: transform 1s;
-  }
+
 
   .toast-enter,
   .toast-leave-to {
@@ -65,9 +63,13 @@ export default {
     transform: scaleY(0.01) translate(30px, 0);
   }
 
-  /* ensure leaving items are taken out of layout flow so that moving
-     animations can be calculated correctly. */
-  .toast-complete-leave-active {
-    position: absolute;
+  .toast-enter-to,
+  .toast-leave {
+    opacity: 1;
+    transform: scaleY(1) translate(0,0);
+  }
+
+  .toast-enter-active, .toast-leave-active, .toast-move {
+    transition: all 500ms ease-in-out;
   }
 </style>
