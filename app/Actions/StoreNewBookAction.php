@@ -61,7 +61,7 @@ class StoreNewBookAction
      */
     private function editionExists($ol_edition_key): bool
     {
-        return !Edition::where('ol_edition_key', $ol_edition_key)->exists();
+        return Edition::where('ol_edition_key', $ol_edition_key)->exists();
     }
 
     /**
@@ -70,9 +70,9 @@ class StoreNewBookAction
      * @param $title
      * @return bool
      */
-    private function bookExists($title): bool
+    private function bookExists($ol_work_key): bool
     {
-        return !Book::where('title', $title)->exists();
+        return Book::where('ol_work_key', $ol_work_key)->exists();
     }
 
     /**
@@ -107,7 +107,7 @@ class StoreNewBookAction
      * @return Book|\Illuminate\Database\Eloquent\Model
      */
     private function addBook(Array $book) {
-        if($this->bookExists($book["ol_work_key"])) {
+        if(!$this->bookExists($book["ol_work_key"])) {
             $this->isNewBook = true;
         }
 
@@ -130,7 +130,7 @@ class StoreNewBookAction
      */
     private function addEdition(Array $edition, Book $book, Publisher $publisher): void
     {
-        if($this->editionExists($edition["ol_edition_key"])) {
+        if(!$this->editionExists($edition["ol_edition_key"])) {
             $this->isNewEdition = true;
         }
 
