@@ -39,6 +39,20 @@ export default {
     redirectToBookView(response) {
       location.href = `/books/${response.data.book.id}`
     },
+    confirmAdditions(response) {
+      if(response.data.isNewBook) {
+        eventHub.$emit('add-toast', 'New book added', 'success');
+      }
+      if(response.data.isNewEdition) {
+        eventHub.$emit('add-toast', 'New edition added', 'success');
+      }
+      if(response.data.isNewAuthor) {
+        eventHub.$emit('add-toast', 'New author added', 'success');
+      }
+      if(response.data.isNewPublisher) {
+        eventHub.$emit('add-toast', 'New publisher added', 'success');
+      }
+    },
     handleErrors(err) {
       if (err.response) {
         this.errors.push(err.response.data.message);
