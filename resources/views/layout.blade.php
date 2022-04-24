@@ -30,7 +30,7 @@
 
         @yield('content')
 
-        <toast></toast>
+        <toast-container></toast-container>
     </div>
 
     @include('includes.footer')
