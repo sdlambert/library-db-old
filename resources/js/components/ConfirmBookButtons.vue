@@ -4,7 +4,7 @@
             <button type="button" class="button primary" @click.stop="saveAddMore">Save and Add More</button>
             <button type="button" class="button success" @click.stop="saveView">Save and View</button>
         </div>
-        <error-alert v-if="errors.length" :errors="errors"></error-alert>
+        <error-alert v-if="errors.length" id="save-book-errors" :errors="errors"></error-alert>
     </div>
 </template>
 

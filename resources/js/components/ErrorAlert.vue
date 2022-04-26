@@ -1,5 +1,5 @@
 <template>
-    <div id="alert-container" class="alert-error">
+    <div class="alert-error">
         <p v-for="error in errors">
             {{ error }}
         </p>
@@ -12,9 +12,6 @@ import { scrollToId } from "../utils";
 export default {
   props: {
     errors: Array
-  },
-  mounted: function() {
-    scrollToId('alert-container')
   }
 }
 </script>

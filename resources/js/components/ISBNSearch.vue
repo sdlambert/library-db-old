@@ -11,7 +11,7 @@
             </ValidationProvider>
             <button type="submit" id="isbn-search" :disabled="( invalid || isLoading )">Search</button>
         </ValidationObserver>
-        <error-alert v-if="apiErrors.length" :errors="apiErrors"></error-alert>
+        <error-alert v-if="apiErrors.length" id="isbn-search-errors" :errors="apiErrors"></error-alert>
     </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
     <div class="isbn-scanner">
         <div id="qr-code-full-region"></div>
-        <error-alert v-if="errors.length" errors="errors"></error-alert>
+        <error-alert v-if="errors.length" id="isbn-scanner-errors" :errors="errors"></error-alert>
     </div>
 </template>
 

@@ -21,7 +21,7 @@
         <book-grid v-if="showGrid" :books="books"></book-grid>
         <footer>
             <pagination :links="links" :meta="meta"></pagination>
-            <error-alert v-if="errors.length" :errors="errors"></error-alert>
+            <error-alert v-if="errors.length" id="pagination-errors" :errors="errors"></error-alert>
         </footer>
     </section>
 </template>
