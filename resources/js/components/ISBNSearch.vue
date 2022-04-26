@@ -74,6 +74,7 @@ export default {
       this.apiErrors = [];
     },
     launchModal() {
+      this.isLoading = false;
       eventHub.$emit('show-modal', this.targetId);
     },
     resetForm() {
@@ -89,21 +90,19 @@ export default {
       }
     },
     async submitForm() {
-      this.isLoading = true;
-
-      if(this.normalizedIsbn) {
-        this.$store.dispatch('newOpenLibraryBook/searchForISBN', this.normalizedIsbn)
-          .then( this.launchModal )
-          .catch( this.throwError );
-      } else {
-        this.throwError("Unable to normalize ISBN.");
-        this.isLoading = false;
+      if(!this.isLoading) {
+        if(this.normalizedIsbn(this.isbn)) {
+          this.$store.dispatch('newOpenLibraryBook/searchForISBN', this.normalizedIsbn)
+            .then( this.launchModal )
+            .catch( this.throwError );
+        } else {
+          this.throwError("Unable to normalize ISBN.");
+          this.isLoading = false;
+        }
       }
     },
-  },
-  computed: {
-    normalizedIsbn () {
-      return isbnStringToInt(this.isbn);
+    normalizedIsbn (isbn) {
+      return isbnStringToInt(isbn);
     },
   },
   created() {
