@@ -13,8 +13,8 @@ export default {
   props: {
     errors: Array
   },
-  onMounted() {
-    scrollToId('#alert-container')
+  mounted: function() {
+    scrollToId('alert-container')
   }
 }
 </script>
