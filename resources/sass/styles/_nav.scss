@@ -122,7 +122,7 @@ body > header {
     max-height: 0;
     overflow: hidden;
     transition: all 0.3s ease-out;
-    z-index: 10;
+    z-index: 5;
   }
   @media (min-width: 768px) {
     ul.menu-left {
