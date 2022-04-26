@@ -1,4 +1,4 @@
-window._ = require('lodash');
+// window._ = require('lodash'); // disabling reduces size by .5 MB 4/25/22
 
 /**
  * Load Popper
