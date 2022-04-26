@@ -12,6 +12,7 @@
 import { scrollToId } from "../utils";
 import { mapGetters } from "vuex";
 import eventHub from "./eventHub";
+import upperFirst from 'lodash/upperFirst'
 
 export default {
   data () {
@@ -23,6 +24,7 @@ export default {
     saveAddMore() {
       this.errors = [];
       axios.post('/books', this.currentBook)
+        .then(this.confirmAdditions)
         .then(this.closeModal)
         .then(() => scrollToId('scan-card'))
         .catch(this.handleErrors);
@@ -39,18 +41,25 @@ export default {
     redirectToBookView(response) {
       location.href = `/books/${response.data.book.id}`
     },
+    addNewRecordToast (recordType, cssClass = 'success') {
+      eventHub.$emit('add-toast', `New ${recordType} added.`, cssClass, Date.now());
+    },
     confirmAdditions(response) {
-      if(response.data.isNewBook) {
-        eventHub.$emit('add-toast', 'New book added', 'success');
-      }
-      if(response.data.isNewEdition) {
-        eventHub.$emit('add-toast', 'New edition added', 'success');
-      }
-      if(response.data.isNewAuthor) {
-        eventHub.$emit('add-toast', 'New author added', 'success');
-      }
-      if(response.data.isNewPublisher) {
-        eventHub.$emit('add-toast', 'New publisher added', 'success');
+      let noNewAdditions;
+      const recordTypes = ['book', 'edition', 'author', 'publisher'];
+
+      recordTypes.forEach(recordType => {
+        console.log(`isNew${upperFirst(recordType)}`, response.data[`isNew${upperFirst(recordType)}`]);
+        if(response.data[`isNew${upperFirst(recordType)}`])
+          this.addNewRecordToast(recordType);
+      });
+
+      noNewAdditions = recordTypes.every(recordType => {
+        return response.data[`isNew${upperFirst(recordType)}`] === false;
+      });
+
+      if(noNewAdditions) {
+        eventHub.$emit('add-toast', 'This volume already exists in the database.', 'error', Date.now());
       }
     },
     handleErrors(err) {
