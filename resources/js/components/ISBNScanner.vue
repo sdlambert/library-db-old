@@ -8,7 +8,7 @@
 <script>
 import eventHub from './eventHub';
 import { Html5QrcodeScanner } from "html5-qrcode";
-import {isbnStringToInt, scrollToId} from "../utils";
+import { isValidIsbnRegEx, scrollToId } from "../utils";
 
 export default {
   props: {
@@ -26,6 +26,7 @@ export default {
       html5QrcodeScanner: {},
       errors: [],
       isbn: null,
+      isLoading: false,
     }
   },
   mounted () {
@@ -42,32 +43,39 @@ export default {
     },
     throwError(errorMessage) {
       this.errors.push(errorMessage);
-      console.error(errorMessage);
-      scrollToId('alert-container');
+      this.$nextTick(() => {
+        scrollToId('isbn-scanner-errors');
+      })
     },
     clearErrors() {
       this.errors = [];
     },
     launchModal() {
+      this.isLoading = false;
       eventHub.$emit('show-modal', 'book-thumbnail-modal');
     },
     onScanSuccess (decodedText, decodedResult) {
-      this.isbn = decodedText;
-      if(this.normalizedIsbn) {
-        this.$store.dispatch('newOpenLibraryBook/searchForISBN', this.normalizedIsbn)
-          .then( this.launchModal )
-          .catch( this.throwError );
-      } else {
-        this.throwError(`Unable to normalize ISBN: ${this.isbn} -> ${this.normalizedIsbn}`);
+      if(!this.loading) {
+        this.isLoading = true;
+        if(isValidIsbnRegEx(decodedText)) {
+          this.searchForISBN(decodedText);
+        } else {
+          this.isLoading = false;
+          this.throwError(`Unable to validate ISBN: ${this.isbn}`);
+        }
       }
     },
-    scrollToScanner() {
+    searchForISBN(isbn) {
+      console.info(`Detected valid ISBN: ${isbn}`);
+      this.isbn = isbn;
+      this.$store.dispatch('newOpenLibraryBook/searchForISBN', this.isbn)
+        .then(this.launchModal)
+        .catch(this.throwError);
+    },
+    scrollToScanner(elementId) {
       scrollToId('scan-card');
-    }
-  },
-  computed: {
-    normalizedIsbn () {
-      return isbnStringToInt(this.isbn);
+      this.isLoading = false;
+      this.isbn = null;
     },
   },
   created() {
