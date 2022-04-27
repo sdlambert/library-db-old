@@ -67,6 +67,7 @@ export default {
       }
     },
     searchForISBN(isbn) {
+      this.clearErrors();
       console.info(`Detected valid ISBN: ${isbn}`);
       this.isbn = isbn;
       this.$store.dispatch('newOpenLibraryBook/searchForISBN', this.isbn)
