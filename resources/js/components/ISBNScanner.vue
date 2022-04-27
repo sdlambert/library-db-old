@@ -42,6 +42,7 @@ export default {
       this.html5QrcodeScanner.render(this.onScanSuccess);
     },
     throwError(errorMessage) {
+      console.error(errorMessage)
       this.errors.push(errorMessage);
       this.$nextTick(() => {
         scrollToId('isbn-scanner-errors');
