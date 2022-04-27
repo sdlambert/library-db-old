@@ -55,7 +55,7 @@ export default {
       this.isLoading = false;
       eventHub.$emit('show-modal', 'book-thumbnail-modal');
     },
-    onScanSuccess (decodedText, decodedResult) {
+    onScanSuccess (decodedText) {
       if(!this.loading) {
         this.isLoading = true;
         if(isValidIsbnRegEx(decodedText)) {
@@ -74,7 +74,7 @@ export default {
         .then(this.launchModal)
         .catch(this.throwError);
     },
-    scrollToScanner(elementId) {
+    scrollToScanner() {
       scrollToId('scan-card');
       this.isLoading = false;
       this.isbn = null;
