@@ -1,5 +1,5 @@
 <template>
-    <div class="toast" >{{ content }}</div>
+    <div class="toast" :class="cssClass">{{ content }}</div>
 </template>
 
 <script>
@@ -7,6 +7,7 @@
 export default {
   props: {
     content: String,
+    cssClass: String
   }
 }
 </script>

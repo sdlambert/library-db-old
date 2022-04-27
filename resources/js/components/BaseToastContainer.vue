@@ -1,7 +1,7 @@
 <template>
     <div class="toast-wrap">
         <transition-group name="toast" tag="div" class="toast-container">
-            <toast v-for="message in messages" :key="message.timestamp" :content="message.content" :class="message.cssClass"></toast>
+            <toast v-for="message in messages" :key="message.timestamp" :content="message.content" :cssClass="message.cssClass"></toast>
         </transition-group>
     </div>
 </template>
@@ -17,11 +17,11 @@ export default {
     }
   },
   methods: {
-    addToast(message, cssClass) {
+    addToast(content, cssClass, timestamp) {
       this.messages.unshift({
+        content,
         cssClass,
-        content: `${message}`,
-        timestamp: Date.now()
+        timestamp
       });
       window.setTimeout(this.removeToast, 5000);
     },
