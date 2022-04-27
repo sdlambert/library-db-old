@@ -2,7 +2,7 @@
 const isEmpty = require('lodash/isEmpty');
 const path = require('path');
 
-const OpenLibrary = (function() {
+const OpenLibrary = function() {
   // Constants
   const openLibraryTLD = "https://openlibrary.org";
   const pathMap = {
@@ -107,6 +107,6 @@ const OpenLibrary = (function() {
     getKeyFromURL,
     getKeyFromURI
   };
-});
+};
 
 export default OpenLibrary;
