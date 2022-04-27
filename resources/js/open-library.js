@@ -37,7 +37,13 @@ const OpenLibrary = function() {
       throwInvalidValueError("isbn", isbn);
     }
     return callAPI(`${openLibraryTLD}/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`)
-      .then(res => res[`ISBN:${isbn}`]);
+      .then(res => {
+        if (!res.hasOwnProperty(`ISBN:${isbn}`)) {
+          throw new Error("The resource you are trying to locate could not be found in the OpenLibrary database.")
+        } else {
+          return res[`ISBN:${isbn}`]
+        }
+      });
   }
 
 
