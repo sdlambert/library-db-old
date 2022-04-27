@@ -1,8 +1,12 @@
 <template>
     <div class="book text-center">
-        <img :src="cover" :alt="alt">
-        <p>By {{ this.fullNameList }}</p>
-        <h4>{{ work.title }}</h4>
+        <div class="cover-wrap">
+            <img :src="cover" :alt="alt">
+        </div>
+        <div class="book-meta">
+            <h4>{{ work.title }}</h4>
+            <p>By {{ this.fullNameList }}</p>
+        </div>
         <a :href="'/books/' + work.id" class="breakout"></a>
     </div>
 </template>
@@ -54,18 +58,23 @@ export default {
   margin: 0 0 4rem;
   padding: 0 2rem;
 
+  .cover-wrap {
+    height: 280px;
+  }
+
   img {
     width: 100%;
     max-width: 180px;
     height: auto;
+    max-height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto 1rem;
   }
 
-  p {
-    margin-top: auto;
+  .book-meta {
+    margin-bottom: auto;
   }
 
   p, h4 {
