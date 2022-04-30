@@ -20,5 +20,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/books', function () {
-    return new BooksResource(Book::with(['authors', 'editions.publisher'])->paginate(12));
+    return new BooksResource(Book::with(['authors', 'editions.publisher']));
 });
+
+Route::get('/books/latest', function (Request $request) {
+    if($request->has('count')) {
+        $count = $request->count;
+    } else $count = 12;
+
+    return new BooksResource(Book::take($count)->latest()->with('authors')->get());
+});
+

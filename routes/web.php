@@ -11,11 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome', [
-        'recentBooks' => App\Book::take(12)->latest()->with('authors')->get()
-    ]);
-});
+Route::get('/{vue_capture?}', function () {
+    return view('welcome');
+})->where('vue_capture', '[\/\w\.-]*'); // add auth here?
+
+//Route::get('/', function () {
+//    return view('welcome', [
+//        'recentBooks' => App\Book::take(12)->latest()->with('authors')->get()
+//    ]);
+//});
 
 // GET /books -- @index
 // GET /books/create -- @create
@@ -28,7 +32,7 @@ Route::get('/', function () {
 Route::view('/books', 'books.index')->name('books.index');
 Route::get('/books/create', 'BooksController@create')->name('books.create');
 Route::post('/books', 'BooksController@store')->name('books.store');
-Route::get('/books/{id}', 'BooksController@show')->name('books.show');
+Route::get('/books/{id}', 'BooksController@show')->name('books.show');  
 
 //Route::get('/books/{$id}/edit', 'BooksController@edit');
 //Route::put('/books/{$id}', 'BooksController@update');

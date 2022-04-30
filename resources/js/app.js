@@ -10,6 +10,15 @@ require('./bootstrap'); // only need axios here?
 window.Vue = require('vue');
 
 import store from './store';
+import VueRouter from 'vue-router';
+import routes from './routes';
+
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+  mode: 'history',
+  routes
+})
 
 /**
  * The following block of code may be used to automatically register your
@@ -55,7 +64,8 @@ Vue.component('show-button', require('./components/ButtonShow').default);
 
 const app = new Vue({
   el: '#app',
-  store: store
+  store,
+  router
 });
 
 require('./nav');

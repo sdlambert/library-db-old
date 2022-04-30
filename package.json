@@ -34,6 +34,7 @@
         "spinthatshit": "^1.0.4",
         "svgstore-cli": "^2.0.1",
         "vee-validate": "^3.4.5",
+        "vue-router": "^3.5.3",
         "vuex": "^3.6.2"
     }
 }
