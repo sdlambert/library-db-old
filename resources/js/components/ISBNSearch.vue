@@ -92,7 +92,7 @@ export default {
     async submitForm() {
       if(!this.isLoading) {
         if(this.normalizedIsbn(this.isbn)) {
-          this.$store.dispatch('newOpenLibraryBook/searchForISBN', this.normalizedIsbn)
+          this.$store.dispatch('newOpenLibraryBook/searchForISBN', this.normalizedIsbn())
             .then( this.launchModal )
             .catch( this.throwError );
         } else {
@@ -101,8 +101,8 @@ export default {
         }
       }
     },
-    normalizedIsbn (isbn) {
-      return isbnStringToInt(isbn);
+    normalizedIsbn() {
+      return isbnStringToInt(this.isbn);
     },
   },
   created() {
