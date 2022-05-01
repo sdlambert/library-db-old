@@ -26,12 +26,12 @@
     </div>
     @include('includes.header')
 
-    <div id="app">
+    <main id="app">
 
         @yield('content')
 
         <toast-container></toast-container>
-    </div>
+    </main>
 
     @include('includes.footer')
 
