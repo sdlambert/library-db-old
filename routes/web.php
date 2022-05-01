@@ -29,18 +29,18 @@ Route::get('/{vue_capture?}', function () {
 // DELETE /books/:isbn -- @destroy
 
 // Books
-Route::view('/books', 'books.index')->name('books.index');
-Route::get('/books/create', 'BooksController@create')->name('books.create');
-Route::post('/books', 'BooksController@store')->name('books.store');
-Route::get('/books/{id}', 'BooksController@show')->name('books.show');  
+//Route::view('/books', 'books.index')->name('books.index');
+//Route::get('/books/create', 'BooksController@create')->name('books.create');
+//Route::post('/books', 'BooksController@store')->name('books.store');
+//Route::get('/books/{id}', 'BooksController@show')->name('books.show');
 
 //Route::get('/books/{$id}/edit', 'BooksController@edit');
 //Route::put('/books/{$id}', 'BooksController@update');
 
 // Authors
-Route::get('/authors', 'AuthorsController@index')->name('authors.index');
-Route::get('/authors/create', 'AuthorsController@create')->name('authors.create');
-Route::post('/authors', 'AuthorsController@store')->name('authors.store');
+//Route::get('/authors', 'AuthorsController@index')->name('authors.index');
+//Route::get('/authors/create', 'AuthorsController@create')->name('authors.create');
+//Route::post('/authors', 'AuthorsController@store')->name('authors.store');
 
 Auth::routes();
 
