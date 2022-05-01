@@ -1,11 +1,13 @@
 <template>
-    <div class="row">
-        <div class="col">
-            <h2>Recent Additions</h2>
-            <book-grid :books="recentBooks"></book-grid>
-            <error-alert v-if="errors.length" id="pagination-errors" :errors="errors"></error-alert>
+    <section id="home">
+        <div class="row">
+            <div class="col">
+                <h2>Recent Additions</h2>
+                <book-grid :books="recentBooks"></book-grid>
+                <error-alert v-if="errors.length" id="pagination-errors" :errors="errors"></error-alert>
+            </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
