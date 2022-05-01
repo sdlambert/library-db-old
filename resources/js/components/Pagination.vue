@@ -1,8 +1,8 @@
 <template>
     <div class="pagination-wrap">
-        <button :disabled="!links.prev" class="button" @click="fetchPrevious">Prev</button>
+        <router-link :to="relativePath(links.prev)" tag="button" :disabled="!links.prev" class="button">Prev</router-link>
         <span>{{ meta.current_page }} of {{ meta.last_page }}</span>
-        <button :disabled="!links.next" class="button" @click="fetchNext">Next</button>
+        <router-link :to="relativePath(links.next)" tag="button" :disabled="!links.next" class="button">Next</router-link>
     </div>
 </template>
 
@@ -15,12 +15,13 @@ export default {
     meta: Object
   },
   methods: {
-    fetchPrevious() {
-      eventHub.$emit('paginate-previous', this.links.prev);
+    relativePath(url) {
+      if (url !== null) {
+        let urlObject = new URL(url);
+        return urlObject.pathname.replace('/api', '') + urlObject.search;
+      } else
+        return {}
     },
-    fetchNext() {
-      eventHub.$emit('paginate-next', this.links.next);
-    }
   }
 }
 </script>

@@ -15,12 +15,12 @@
             </tr>
             </thead>
             <tbody>
-            <book-row v-for="book in books" :work="book" :key="book.id"></book-row>
+                <book-row v-for="book in books" :work="book" :key="book.id"></book-row>
             </tbody>
         </table>
         <book-grid v-if="showGrid" :books="books"></book-grid>
         <footer>
-            <pagination :links="links" :meta="meta"></pagination>
+            <pagination v-if="hasFetchedBooks" :links="links" :meta="meta"></pagination>
             <error-alert v-if="errors.length" id="pagination-errors" :errors="errors"></error-alert>
         </footer>
     </section>
@@ -43,7 +43,8 @@ export default {
       links: {},
       meta: {},
       showGrid: false,
-      showTable: true
+      showTable: true,
+      hasFetchedBooks: false
     }
   },
   methods: {
@@ -51,13 +52,15 @@ export default {
       this.errors.push(errorMessage);
       console.error(errorMessage);
     },
-    async fetchBooks(path = booksIndexUrl) {
-      return await fetch(path)
+    async fetchBooks() {
+      this.hasFetchedBooks = false;
+      return await fetch('/api/books' + window.location.search)
         .then(response => response.json())
         .then(booksData => {
           this.books = booksData.data;
           this.links = booksData.links;
           this.meta = booksData.meta;
+          this.hasFetchedBooks = true;
         });
     },
 
@@ -67,14 +70,6 @@ export default {
       .catch(err => {
         this.errors.push(err);
       });
-  },
-  created() {
-    eventHub.$on('paginate-previous', this.fetchBooks);
-    eventHub.$on('paginate-next', this.fetchBooks);
-  },
-  beforeDestroy () {
-    eventHub.$off('paginate-previous', this.fetchBooks);
-    eventHub.$off('paginate-next', this.fetchBooks);
   }
 }
 </script>
