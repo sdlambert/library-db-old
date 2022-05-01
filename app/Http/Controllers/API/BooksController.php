@@ -38,7 +38,7 @@ class BooksController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return BooksResource
+     * @return BookResource
      */
     public function show($id)
     {
