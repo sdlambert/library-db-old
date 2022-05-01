@@ -29,3 +29,4 @@ Route::get('/books/latest', function (Request $request) {
     return new BooksResource(Book::take($count)->latest()->with('authors')->get());
 });
 Route::get('/books/{id}', 'API\BooksController@show')->name('api.books.show');
+Route::post('/books', 'API\BooksController@store')->name('books.store');

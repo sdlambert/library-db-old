@@ -23,7 +23,7 @@ export default {
   methods: {
     saveAddMore() {
       this.errors = [];
-      axios.post('/books', this.currentBook)
+      axios.post('/api/books', this.currentBook)
         .then(this.confirmAdditions)
         .then(this.closeModal)
         .then(() => scrollToId('scan-card'))
@@ -31,7 +31,7 @@ export default {
     },
     saveView() {
       this.errors = [];
-      axios.post('/books', this.currentBook)
+      axios.post('/api/books', this.currentBook)
         .then(this.redirectToBookView)
         .catch(this.handleErrors);
     },

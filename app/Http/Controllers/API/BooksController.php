@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Actions\StoreNewBookAction;
 use App\Book;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreNewBook;
 use Illuminate\Http\Request;
 use App\Http\Resources\Books as BooksResource;
 use App\Http\Resources\Book as BookResource;
@@ -24,11 +26,12 @@ class BooksController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
-    public function store(Request $request)
+    public function store(StoreNewBook $request)
     {
-        //
+        $storeNewBookAction = new StoreNewBookAction;
+        return $storeNewBookAction->execute($request->validated());
     }
 
     /**
