@@ -1,5 +1,5 @@
 <template>
-    <div class="col-12">
+    <div id="book-detail-container">
         <div id="book-title">
             <h2>{{ book.title }}</h2>
             <div id="icon-links" class=" text-center">
@@ -104,7 +104,7 @@ export default {
       return `https://www.goodreads.com` + (this.book.editions[0].goodreads ? `/book/show/${this.book.editions[0].goodreads}` : `/search?q=${this.isbn}`);
     },
     openLibrary() {
-      return `https://www.openlibrary.org/books/${this.book.editions[0].openlibrary}`;
+      return `https://www.openlibrary.org/books/${this.book.editions[0].ol_edition_key}`;
     }
   }
 }
