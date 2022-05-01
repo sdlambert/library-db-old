@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/books', function () {
-    return new BooksResource(Book::with(['authors', 'editions.publisher']));
+    return new BooksResource(Book::with(['authors', 'editions.publisher'])->paginate(12));
 });
 
 Route::get('/books/latest', function (Request $request) {
