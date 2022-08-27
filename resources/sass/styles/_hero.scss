@@ -2,20 +2,20 @@
   background: url('../images/books-hero-banner.jpg');
   background-repeat: no-repeat;
   background-color: $white;
-
-  @include media($small-screen-down) {
-    background-size: cover;
-    background-position: center 20px;
-    min-height: 250px;
-  }
-  @include media($small-screen) {
-    background-position: center 15%;
-    min-height: 350px;
-  }
+  background-size: cover;
+  background-position: center top;
+  min-height: 200px;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 52px;
+
+  @include media($large-screen) {
+    background-size: cover;
+    background-position: center calc(100% + 33vw);
+    min-height: 250px;
+  }
 
   h2 {
     display: block;
