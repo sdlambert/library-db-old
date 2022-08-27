@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/{vue_capture?}', function () {
-    return view('welcome');
-})->where('vue_capture', '[\/\w\.-]*'); // add auth here?
-
 //Route::get('/', function () {
 //    return view('welcome', [
 //        'recentBooks' => App\Book::take(12)->latest()->with('authors')->get()
@@ -45,3 +41,7 @@ Route::get('/{vue_capture?}', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/{vue_capture?}', function () {
+    return view('welcome');
+})->where('vue_capture', '[\/\w\.-]*'); // add auth here?
