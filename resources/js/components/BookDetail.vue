@@ -80,12 +80,14 @@
             </div>
         </div>
         <div id="book-blurb">
-            <p>{{ book.blurb }}</p>
+            <p v-html="blurb"></p>
         </div>
     </div>
 </template>
 
 <script>
+import { micromark } from 'micromark';
+
 export default {
   props: {
     book: Object
@@ -105,6 +107,9 @@ export default {
     },
     openLibrary() {
       return `https://www.openlibrary.org/books/${this.book.editions[0].ol_edition_key}`;
+    },
+    blurb() {
+      return this.book.blurb?.length && micromark(this.book.blurb);
     }
   }
 }
