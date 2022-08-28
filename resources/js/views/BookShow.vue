@@ -2,6 +2,11 @@
     <section id="book-show">
         <div class="row">
             <div class="col">
+                <router-link to="/books" class="button primary">View All Books</router-link>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
                 <book-detail v-if="hasBookData" :book="book"></book-detail>
                 <error-alert v-if="errors.length" id="book-detail-errors" :errors="errors"></error-alert>
             </div>
