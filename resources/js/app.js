@@ -31,6 +31,10 @@ const router = new VueRouter({
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+// Response Codes
+Vue.component('not-found', require('./components/NotFound').default);
+
+
 // Generic Components
 Vue.component('card', require('./components/BaseCard.vue').default);
 Vue.component('modal', require('./components/BaseModal.vue').default);
