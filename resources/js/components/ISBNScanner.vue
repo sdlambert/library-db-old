@@ -70,7 +70,7 @@ export default {
       this.clearErrors();
       console.info(`Detected valid ISBN: ${isbn}`);
       this.isbn = isbn;
-      this.$store.dispatch('newOpenLibraryBook/searchForISBN', this.isbn)
+      this.$store.dispatch('openLibraryBook/searchForISBN', this.isbn)
         .then(this.launchModal)
         .catch(this.throwError);
     },

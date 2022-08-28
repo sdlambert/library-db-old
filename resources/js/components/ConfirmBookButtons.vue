@@ -76,7 +76,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters('newOpenLibraryBook', [
+    ...mapGetters('openLibraryBook', [
       "currentBook"
     ]),
   },

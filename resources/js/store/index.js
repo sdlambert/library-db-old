@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { createLogger } from 'vuex'
-import newOpenLibraryBook from './modules/newOpenLibraryBook';
+import openLibraryBook from './modules/openLibraryBook';
 
 Vue.use(Vuex);
 
@@ -9,7 +9,7 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   modules: {
-    newOpenLibraryBook
+    openLibraryBook
   },
   strict: debug,
   plugins: debug ? [createLogger()] : []
