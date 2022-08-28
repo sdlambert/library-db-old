@@ -15,38 +15,42 @@ import ErrorAlert from "../components/ErrorAlert";
 
 export default {
   name: "BookShow",
+  beforeRouteEnter: (to, from, next) => {
+    fetch(`/api/books/${to.params.id}`)
+      .then(response => response.json())
+      .then(bookData => {
+        if(!Array.isArray(bookData.data)) { // empty array is
+          next(vm => vm.setBook(bookData.data));
+        } else {
+          next({ name: '404', params: [ to.path ], replace: true })
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  },
   components: {
     BookDetail,
     ErrorAlert
   },
   data() {
     return {
+      previous: {},
       book: {},
       errors: [],
       hasBookData: false
     }
   },
   methods: {
-    async getBook() {
-      this.hasBookData = false;
-      return await fetch(`/api${this.$route.path}`)
-        .then(response => response.json())
-        .then(bookData => {
-          this.book = bookData.data;
-          this.hasBookData = true;
-        })
+    setBook(book) {
+      this.book = book;
+      this.hasBookData = true;
     },
     handleError(errorMessage) {
       this.errors.push(errorMessage);
       console.error(errorMessage);
     }
   },
-  mounted() {
-    this.getBook(this.$route.params.id)
-      .catch(err => {
-        this.errors.push(err);
-      });
-  }
 }
 </script>
 
