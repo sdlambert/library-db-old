@@ -4,16 +4,16 @@
             <h2>{{ book.title }}</h2>
             <div id="icon-links" class=" text-center">
                 <a :href="goodreads" class="icon icon-link" target="_blank">
-                    <img src="/images/icons/goodreads_sm.png" alt="Goodreads icon">
+                    <img src="/images/icons/goodreads_sm.png" alt="Goodreads icon" loading="lazy">
                 </a>
                 <a :href="openLibrary" class="icon icon-link icon-shadow" target="_blank">
-                    <img src="/images/icons/open-library-logo.png" alt="Open Libary icon">
+                    <img src="/images/icons/open-library-logo.png" alt="Open Libary icon" loading="lazy">
                 </a>
             </div>
         </div>
         <div id="book-detail">
             <div id="book">
-                <img :src="cover" :alt="alt">
+                <img :src="cover" :alt="alt" loading="lazy">
             </div>
             <div id="book-meta">
                 <div id="authors">

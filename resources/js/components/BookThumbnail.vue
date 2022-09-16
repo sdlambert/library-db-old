@@ -1,7 +1,7 @@
 <template>
     <div class="book text-center">
         <div class="cover-wrap">
-            <img :src="cover" :alt="alt">
+            <img :src="cover" :alt="alt" loading="lazy">
         </div>
         <div class="book-meta">
             <h4>{{ work.title }}</h4>
